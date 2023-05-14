@@ -118,6 +118,20 @@
   </div>
 </div>
 
+<div style="font-size: xx-large">
+  2023 狗窩員工工作內容(卯咪版)
+</div>
+
+<div id="instants_container">
+  <div class="instant" v-for="file in workGuildLineList">
+    <div class="circle small-button-background" :style="{ backgroundColor: buttonBgColor }"></div>
+    <button class="small-button" v-on:click="play(file.name)" type="button"></button>
+    <div class="small-button-shadow"></div>
+    <a class="instant-link link-secondary">{{file.name}}</a>
+  </div>
+</div>
+<br>
+
 <!-- 中間按鈕區塊 -->
 <div id="instants_container">
  <!-- 迴圈 v-for -->
@@ -227,6 +241,20 @@
   var app4 = new Vue({
     el: '#top',
     data:{
+      workGuildLineList:[
+        {name:'狗窩工作-卯咪版'},
+        {name:'1.打狗'},
+        {name:'2.睡沙發'},
+        {name:'3.睡車上'},
+        {name:'4.睡覺'},
+        {name:'5.開台'},
+        {name:'6.睡過頭開台'},
+        {name:'7.睡過頭不開台'},
+        {name:'8.時空幻影之術'},
+        {name:'9.喵喵喵'},
+        {name:'10.汪汪汪'},
+        {name:'卯咪好員工'},
+        ],
       soundList:[
         {name:'ㄅㄆㄇ安安'},
         {name:'哈囉'},
