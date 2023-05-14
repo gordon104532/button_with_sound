@@ -123,7 +123,16 @@
 </div>
 
 <div id="instants_container">
-  <div class="instant" v-for="file in workGuildLineList">
+  <div class="instant" v-for="file in workGuildLineList1">
+    <div class="circle small-button-background" :style="{ backgroundColor: buttonBgColor }"></div>
+    <button class="small-button" v-on:click="play(file.name)" type="button"></button>
+    <div class="small-button-shadow"></div>
+    <a class="instant-link link-secondary">{{file.name}}</a>
+  </div>
+</div>
+<!-- 第二排 -->
+<div id="instants_container">
+  <div class="instant" v-for="file in workGuildLineList2">
     <div class="circle small-button-background" :style="{ backgroundColor: buttonBgColor }"></div>
     <button class="small-button" v-on:click="play(file.name)" type="button"></button>
     <div class="small-button-shadow"></div>
@@ -241,13 +250,15 @@
   var app4 = new Vue({
     el: '#top',
     data:{
-      workGuildLineList:[
+      workGuildLineList1:[
         {name:'狗窩工作-卯咪版'},
         {name:'1.打狗'},
         {name:'2.睡沙發'},
         {name:'3.睡車上'},
         {name:'4.睡覺'},
         {name:'5.開台'},
+        ],
+        workGuildLineList2:[
         {name:'6.睡過頭開台'},
         {name:'7.睡過頭不開台'},
         {name:'8.時空幻影之術'},
@@ -293,6 +304,10 @@
         {name:'沒扛住阿'},
         {name:'睡覺了'},
       ],      
+      secondList:[
+        {name:''},
+        {name:''},
+        ],
       natureList:[
         {name:'Ahoy'},
         {name:'哈密瓜'},
