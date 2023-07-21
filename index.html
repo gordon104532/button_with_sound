@@ -36,7 +36,7 @@
 </div>
 <div id="content">
 <div id="top-ad">
-<div class="multiaspect-large-banner-ad"></div>
+<!-- <div class="multiaspect-large-banner-ad"></div> -->
 </div>
 
 <!-- 彩蛋部分 -->
@@ -119,38 +119,18 @@
 </div>
 
 <div style="font-size: xx-large">
-  2023 狗窩員工工作內容(卯咪版)
+  暫時關閉了，明年見(嗎?)
 </div>
 
-<div id="instants_container">
-  <div class="instant" v-for="file in workGuildLineList1">
-    <div class="circle small-button-background" :style="{ backgroundColor: buttonBgColor }"></div>
-    <button class="small-button" v-on:click="play(file.name)" type="button"></button>
-    <div class="small-button-shadow"></div>
-    <a class="instant-link link-secondary">{{file.name}}</a>
-  </div>
-</div>
+<!-- <file-instants-container :files="workGuildLineList1" :button-bg-color="buttonBgColor"></file-instants-container> -->
+
 <!-- 第二排 -->
-<div id="instants_container">
-  <div class="instant" v-for="file in workGuildLineList2">
-    <div class="circle small-button-background" :style="{ backgroundColor: buttonBgColor }"></div>
-    <button class="small-button" v-on:click="play(file.name)" type="button"></button>
-    <div class="small-button-shadow"></div>
-    <a class="instant-link link-secondary">{{file.name}}</a>
-  </div>
-</div>
-<br>
+<!-- <file-instants-container :files="workGuildLineList2" :button-bg-color="buttonBgColor"></file-instants-container> -->
+<!-- <br> -->
 
 <!-- 中間按鈕區塊 -->
-<div id="instants_container">
- <!-- 迴圈 v-for -->
-  <div class="instant" v-for="file in soundList">
-    <div class="circle small-button-background" :style="{ backgroundColor: buttonBgColor }"></div>
-    <button class="small-button" v-on:click="play(file.name)" type="button"></button>
-    <div class="small-button-shadow"></div>
-    <a class="instant-link link-secondary">{{file.name}}</a>
-  </div>
-</div>
+<!-- <file-instants-container :files="soundList" :button-bg-color="buttonBgColor"></file-instants-container> -->
+
 
 <!-- <div id="loading"></div> -->
 
@@ -245,10 +225,29 @@
     // infiniteScroll();
 </script>
 
+<template>
+  <div class="instant" v-for="file in files">
+    <div class="circle small-button-background" :style="{ backgroundColor: buttonBgColor }"></div>
+    <button class="small-button" v-on:click="play(file.name)" type="button"></button>
+    <div class="small-button-shadow"></div>
+    <a class="instant-link link-secondary">{{file.name}}</a>
+  </div>
+</template>
+
 <script>
   var fileDomain = "https://storage.googleapis.com/button-media/" 
   var app4 = new Vue({
     el: '#top',
+    props: {
+      files: {
+        type: Array,
+        required: true
+      },
+      buttonBgColor: {
+        type: String,
+        required: true
+      }
+    },
     data:{
       workGuildLineList1:[
         {name:'狗窩工作-卯咪版'},
@@ -258,7 +257,7 @@
         {name:'4.睡覺'},
         {name:'5.開台'},
         ],
-        workGuildLineList2:[
+      workGuildLineList2:[
         {name:'6.睡過頭開台'},
         {name:'7.睡過頭不開台'},
         {name:'8.時空幻影之術'},
@@ -334,7 +333,7 @@
       playAudio(fileDomain + file + '.mp3')
     },
     esterEgg() {
-      this.counter += 1
+      // this.counter += 1
 
       // navbar 變色
       // if (this.counter === 5) {
@@ -342,6 +341,7 @@
       // }
     }
   }
+  
   });
 
   var audio = new Audio();
