@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://cdn4.buysellads.net" crossorigin>
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous" as="script">
+<title>
+  
+  ㄅㄅㄅ
+  
+</title>
+<meta name="description" content="可愛吧" />
+<meta property="og:title" content="ㄅ主播" />
+<meta property="og:description" content="ㄅ主播ㄉ按鈕" />
+<meta name="color-scheme" content="light dark">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-dark-5@1.1.3/dist/css/bootstrap-dark.min.css" rel="stylesheet" crossorigin="anonymous">
+<link rel="stylesheet" href="https://www.myinstants.com/media/css/A.external.css.pagespeed.cf.uxZkR9uc19.css" />
+<script async src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+<div id="top" style = "user-select: none">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-bar" :style="{ backgroundColor: navbarBgColor }">
+  <div class="container-fluid justify-content-between flex-row">
+    <div class="my-1">
+      <a id="brand" class="navbar-brand ms-3" v-on:click="esterEgg">{{ navbarTittle }}</a>  
+    </div>
+  </div>
+</nav>
+<div>
+  
+<div id="sticky-left" class="skyscraper-large-ad">
+</div>
+<div id="sticky-right" class="skyscraper-large-ad text-right">
+</div>
+<div id="content">
+<div id="top-ad">
+<!-- <div class="multiaspect-large-banner-ad"></div> -->
+</div>
+
+<!-- 彩蛋部分 -->
+<div> 
+  <div v-if="counter > 4 && counter < 49">
+    <div style="font-size: xx-large">  
+      <img src="https://media.discordapp.net/stickers/948615150016020480.png?size=160" alt="popeCat rose" style="width:8%;height:8%;">
+      生日快樂歌
+      <img src="https://media.discordapp.net/stickers/948615150016020480.png?size=160" alt="popeCat rose" style="width:8%;height:8%;">
+    </div>
+    <audio controls>
+      <source src="https://storage.googleapis.com/button-media/生日快樂歌.mp3" type="audio/mpeg">
+    </audio>
+  </div> 
+  
+  <div v-if="counter > 18 && counter < 49">
+    <br>
+    <div style="font-size: xx-large">小彩蛋</div>
+    <audio controls>
+      <source src="https://storage.googleapis.com/button-media/笑.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <div v-if="counter > 23  && counter < 34  ">
+    <br>
+    <div>ﾚ(ﾟ∀ﾟ;)ﾍ 沒有了啦 ﾍ( ﾟ∀ﾟ;)ﾉ</div>
+  </div>  
+
+  <div v-if="counter > 33 && counter < 49">
+    <br>
+    <div>(๑•ั็ω•็ั๑) 沒有了吧 (๑•ั็ω•็ั๑)</div>
+  </div> 
+
+  <div v-if="counter > 48">
+    <br>
+    <div style="font-size: xx-large">
+      <img src="https://cdn.discordapp.com/banners/562730627628007424/a_08bec42035deba125b60485317f14558.gif?size=160" alt="yb5715 roll">
+      哈哈! 李明堂 aka 助燃
+      <img src="https://cdn.discordapp.com/banners/562730627628007424/a_08bec42035deba125b60485317f14558.gif?size=160" alt="yb5715 roll">
+    </div>
+    <div id="instants_container">
+      <div class="instant" v-for="file in natureList">
+        <div class="circle small-button-background" :style="{ backgroundColor: naturalBgColor }"></div>
+        <button class="small-button" v-on:click="play(file.name)" type="button"></button>
+        <div class="small-button-shadow"></div>
+        <a class="instant-link link-secondary">{{file.name}}</a>
+      </div>
+    </div>
+  </div> 
+
+  <div v-if="counter > 58">
+    <br>
+    <div style="font-size: xx-large">
+      <!-- <img src="https://cdn.discordapp.com/emojis/848951513854115941.webp?size=96&quality=lossless" alt="pudding"> -->
+      <img src="https://cdn.discordapp.com/attachments/846404573064200246/911303718555770940/ezgif.com-gif-maker.gif" alt="nice cake jump" style="width:13%;height:13%;">
+      居然還有 N主播
+      <img src="https://cdn.discordapp.com/attachments/846404573064200246/911303718555770940/ezgif.com-gif-maker.gif" alt="nice cake jump" style="width:13%;height:13%;">
+    </div>
+    
+    <div id="instants_container">
+      <div class="instant" v-for="file in naoList">
+        <div class="circle small-button-background" :style="{ backgroundColor: naoBgColor }"></div>
+        <button class="small-button" v-on:click="play(file.name)" type="button"></button>
+        <div class="small-button-shadow"></div>
+        <a class="instant-link link-secondary">{{file.name}}</a>
+      </div>
+    </div>
+  </div>
+
+  <div v-if="counter > 68">
+    <br>
+    <div>ლ(•ω •ლ) 沒有了 ლ(•ω •ლ)</div>
+  </div> 
+
+  <div v-if="counter > 99">
+    <br>
+    <div>好了啦 你已經按一百下了</div>
+    <div>(*´▽`*)</div>
+  </div>
+</div>
+
+<div style="font-size: xx-large">
+  暫時關閉了，明年見(嗎?)
+</div>
+
+<!-- <file-instants-container :files="workGuildLineList1" :button-bg-color="buttonBgColor"></file-instants-container> -->
+
+<!-- 第二排 -->
+<!-- <file-instants-container :files="workGuildLineList2" :button-bg-color="buttonBgColor"></file-instants-container> -->
+<!-- <br> -->
+
+<!-- 中間按鈕區塊 -->
+<!-- <file-instants-container :files="soundList" :button-bg-color="buttonBgColor"></file-instants-container> -->
+
+
+<!-- <div id="loading"></div> -->
+
+</div>
+</div>
+</div>
+<script>
+    // function infiniteScroll() {
+    //   let responseBuffer = [];
+    //   let requestPending = false;
+    //   let currentPage = 1;
+    //   const loadingEl = document.querySelector('#loading');
+    //   const containerEl = document.querySelector('#instants_container');
+
+    //   const emptyBuffer = () => {
+    //     if (responseBuffer.length == 0) return;
+        
+    //     while (responseBuffer.length > 0) {
+    //         const item = responseBuffer.shift();
+    //         containerEl.appendChild(item);
+    //     }
+      
+    //     try {
+    //       window.optimize = window.optimize || { queue: [] };
+    //       if (currentPage % 2 == 0) {
+    //         window.optimize.queue.push(() => {
+    //           window.optimize.push(`bsa-zone_1643037277384-0_123456_${ currentPage }`);
+    //         });
+    //       } else {
+    //         window.optimize.queue.push(() => {
+    //           window.optimize.push(`bsa-zone_1657119475700-3_123456_${ currentPage }`);
+    //         });
+    //       }
+          
+    //     } catch (error) {
+    //       console.log(error);
+    //     }
+        
+    //     let params = (new URL(document.location)).searchParams;
+    //     params.set('page', currentPage);
+    //     let pageLocation = window.location.href.split('?')[0] + '?' + params;
+    //     gtag('event', 'page_view', {
+    //       page_location: pageLocation,
+    //     });
+    //   };
+
+    //   const requestHandler = () => {
+    //       if (requestPending) return;
+    //       currentPage = currentPage + 1;
+    //       requestPending = true;
+    //       let params = (new URL(document.location)).searchParams;
+    //       params.set('page', currentPage);
+    //       fetch(`?${params}`)
+    //         .then(response => {
+    //             if (response.ok) {
+    //                 return response.text();
+    //             } else {
+    //                 throw new Error("Not 2xx response", {cause: response});
+    //             }
+    //         })
+    //         .then(html => {
+    //             var parser = new DOMParser();
+    //             var doc = parser.parseFromString(html, 'text/html');
+    //             hideWebShareIfNotSupported(doc);
+    //             setTooltips(doc);
+    //             responseBuffer = responseBuffer.concat(Array.from(doc.querySelector("#instants_container").children));
+    //             requestPending = false;
+    //             listObserver.observe(loadingEl);
+    //         })
+    //         .catch(error => {
+    //             loadingEl.style = "display: none";
+    //             listObserver.unobserve(loadingEl);
+    //         });
+    //   }
+
+    //   const listObserver = new IntersectionObserver((entries, observer) => {
+    //       entries.forEach(entry => {
+    //           if (entry.intersectionRatio > 0) {
+    //               listObserver.unobserve(loadingEl);
+    //               emptyBuffer();
+    //               requestHandler();
+    //           }
+    //       });
+    //   }, {
+    //       rootMargin: "0px 0px 200px 0px"
+    //   });
+      
+    //   listObserver.observe(loadingEl);
+    //   requestHandler();
+
+    // }
+    // infiniteScroll();
+</script>
+
+<template>
+  <div class="instant" v-for="file in files">
+    <div class="circle small-button-background" :style="{ backgroundColor: buttonBgColor }"></div>
+    <button class="small-button" v-on:click="play(file.name)" type="button"></button>
+    <div class="small-button-shadow"></div>
+    <a class="instant-link link-secondary">{{file.name}}</a>
+  </div>
+</template>
+
+<script>
+  var fileDomain = "https://storage.googleapis.com/button-media/" 
+  var app4 = new Vue({
+    el: '#top',
+    props: {
+      files: {
+        type: Array,
+        required: true
+      },
+      buttonBgColor: {
+        type: String,
+        required: true
+      }
+    },
+    data:{
+      workGuildLineList1:[
+        {name:'狗窩工作-卯咪版'},
+        {name:'1.打狗'},
+        {name:'2.睡沙發'},
+        {name:'3.睡車上'},
+        {name:'4.睡覺'},
+        {name:'5.開台'},
+        ],
+      workGuildLineList2:[
+        {name:'6.睡過頭開台'},
+        {name:'7.睡過頭不開台'},
+        {name:'8.時空幻影之術'},
+        {name:'9.喵喵喵'},
+        {name:'10.汪汪汪'},
+        {name:'卯咪好員工'},
+        ],
+      soundList:[
+        {name:'ㄅㄆㄇ安安'},
+        {name:'哈囉'},
+        {name:'生日快熱'},
+        {name:'哇賽'},
+        {name:'哇賽2'},
+        {name:'ㄅㄅㄇ'},
+        {name:'天使般的嗓音'},
+        {name:'歐買尬'},
+        {name:'暈爛了'},
+        {name:'阿巴阿巴'},
+        {name:'啵啵啵'},
+        {name:'我的表單'},
+        {name:'就你在搞耶'},
+        {name:'就你在搞'},
+        {name:'真的抱歉'},
+        {name:'搞壽星心態'},
+        {name:'卯咪汪汪'},
+        {name:'駿我大哥'},
+        {name:'胖丁最棒'},
+        {name:'好可愛'},
+        {name:'真的很可愛'},
+        {name:'好想卯咪'},
+        {name:'不睡覺的卯咪'},
+        {name:'這甚麼好可愛'},
+        {name:'這個也很可愛'},
+        {name:'這個也好可愛'},
+        {name:'超可愛的'},
+        {name:'我忘記了啦'},
+        {name:'我沒看到'},
+        {name:'看錯時間了'},
+        {name:'還有十分鐘'},
+        {name:'我知道了'},
+        {name:'打狗狗巴掌'},
+        {name:'該了吧'},
+        {name:'沒扛住阿'},
+        {name:'睡覺了'},
+      ],      
+      secondList:[
+        {name:''},
+        {name:''},
+        ],
+      natureList:[
+        {name:'Ahoy'},
+        {name:'哈密瓜'},
+        {name:'嘻嘻'},
+        {name:'財富自由'},
+        {name:'買早餐'},
+      ],
+      naoList:[
+        {name:'噢伊'},
+        {name:'傑哥'},
+        {name:'你會吧'},
+        {name:'好餓'},
+        {name:'蚵仔(慎點!)'},
+      ],
+      counter: 0,
+      navbarTittle: "ㄅㄅㄅㄕㄖㄎㄌ",
+      navbarBgColor: "rgb(50, 81, 149)",
+      buttonBgColor: "#1582f0",
+      naturalBgColor: "#6cde43",
+      naoBgColor: "#99bd8c"
+    },
+    methods: {
+    play: function (file) {
+      playAudio(fileDomain + file + '.mp3')
+    },
+    esterEgg() {
+      // this.counter += 1
+
+      // navbar 變色
+      // if (this.counter === 5) {
+      //   this.navbarBgColor = this.naturalBgColor
+      // }
+    }
+  }
+  
+  });
+
+  var audio = new Audio();
+  audio.preload = 'none';
+  var hasErrors;
+  var lastUrl;
+  var canPause;
+  function playAudio(url) {
+    if (canPause) {
+        audio.pause();
+        audio.currentTime = 0;
+    }
+    if (lastUrl != url || hasErrors) {
+        audio.src = url;
+        lastUrl = url;
+        hasErrors = false;
+        canPause = false;
+        audio.onerror = function() {
+            hasErrors = true
+        }
+        ;
+    }
+    var playPromise = audio.play();
+    if (playPromise !== undefined) {
+        playPromise.then(_=>{
+            canPause = true;
+        }
+        ).catch(error=>{
+            hasErrors = true;
+        }
+        );
+    }
+}
+</script>
+</body>
+</html>
