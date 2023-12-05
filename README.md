@@ -8,3 +8,4 @@
 - 剪輯好的音檔放在Google Cloud Storage上
 - 2023/07/21 因為GCS試用期間到期，故暫時關閉了
 - 2023/12/04 實驗性的播放清單
+- RWD & Dark Mode
