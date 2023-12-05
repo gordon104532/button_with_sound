@@ -1,6 +1,6 @@
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
-  outputDir: './doc',
+  outputDir: './docs',
   publicPath: '/button_with_sound/',
   transpileDependencies: true
 })
