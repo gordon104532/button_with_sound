@@ -1,0 +1,18 @@
+<template>
+  <div class="home">
+    <img width="15%" height="15%" alt="logo" src="../assets/logo.png">
+    <PlayList></PlayList>
+  </div>
+</template>
+
+<script>
+// @ is an alias to /src
+import PlayList from '@/components/PlayList.vue'
+
+export default {
+  name: 'HomeView',
+  components: {
+    PlayList
+  }
+}
+</script>

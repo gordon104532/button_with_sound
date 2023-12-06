@@ -1,7 +1,12 @@
 <template>
     <div>
       <h2>罐製ㄉ播放器</h2>
-      <h3>{{ nowPlaying }}</h3>
+      <div v-show="isPlaying">
+        <Vue3Marquee class="marquee">
+          <h3>{{ nowPlaying }}</h3>
+        </Vue3Marquee>
+      </div>
+
       <audio ref="audio" controls="controls" @ended="skip">
         HTML5 MP3 audio required (Chrome, Safari, IE 9?)
       </audio>
@@ -16,6 +21,8 @@
 </template>
 
 <script>
+import { Vue3Marquee } from 'vue3-marquee'
+
 export default {
   data () {
     return {
@@ -64,9 +71,11 @@ export default {
         { text: '阿呀捏-Someday or One Day', url: '/1000047863016992831/1104425571569635328/-Someday_or_One_Day' },
         { text: '阿呀捏-下雨天', url: '/1000047863016992831/1104425542767353887/-' },
         { text: '阿呀捏-你要的愛', url: '/1000047863016992831/1104425511779848242/-' },
-        { text: '阿呀捏-杰哥音樂劇', url: '/1000047863016992831/1104422336951767081/-' }
+        { text: '阿呀捏-杰哥音樂劇', url: '/1000047863016992831/1104422336951767081/-' },
+        { text: '霜霜-不敢哭', url: '/980418546385444970/1094359359611490434/20230408__' }
       ],
       nowPlaying: '',
+      isPlaying: false,
       currentPlayingIndex: -1
     }
   },
@@ -79,6 +88,7 @@ export default {
           audio.play()
           this.currentPlayingIndex = this.links.indexOf(link)
           this.nowPlaying = link.text
+          this.isPlaying = true
         }
       })
     },
@@ -92,6 +102,9 @@ export default {
         this.playAudio(this.links[this.currentPlayingIndex])
       }
     }
+  },
+  components: {
+    Vue3Marquee
   }
 }
 
@@ -109,5 +122,9 @@ export default {
 
   li.playing {
     font-weight: bold;
+  }
+
+  marquee {
+    width: 150px;
   }
 </style>
