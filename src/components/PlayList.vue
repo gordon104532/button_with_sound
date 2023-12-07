@@ -54,7 +54,7 @@ export default {
         { text: '波普貓-Golden Hour', url: '/1077652500578050048/1088146757667532851/20230113__Golden_hour' },
         { text: '波普貓-Heartache', url: '/915614796014059520/1159163595435814922/20211215_Heartache' },
         { text: '波普貓-Driver License', url: '/915614796014059520/1140702668654915717/20220219__driver_license' },
-        { text: '波普貓-Get Jinxed', url: '/915614796014059520/1143241215341494292/-GetJinxed.mp3' },
+        { text: '波普貓-Get Jinxed', url: '/915614796014059520/1143241215341494292/-GetJinxed' },
         { text: '波普貓-When The Party\'s Over', url: '/915614796014059520/1158790020702949448/20230406__when_the_partys_over' },
         { text: '波普貓-Wish You Were Gay', url: '/915614796014059520/1095452749518340136/20220408__wish_you_were_gay' },
         { text: '波普貓-It\'s Okay', url: '/915614796014059520/1104502926854078494/20221005__its_ok' },
