@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <img width="15%" height="15%" alt="logo" src="../assets/logo.png">
     <PlayList></PlayList>
   </div>
 </template>

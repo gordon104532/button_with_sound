@@ -1,5 +1,7 @@
 <template>
     <div>
+      <img width="15%" height="15%" alt="logo" src="../assets/logo.png" v-on:click="clickIcon">
+
       <h2>罐製ㄉ播放器</h2>
       <div v-show="isPlaying">
         <Vue3Marquee class="marquee">
@@ -11,7 +13,7 @@
         HTML5 MP3 audio required (Chrome, Safari, IE 9?)
       </audio>
 
-      <ul style="font-size: large; text-align:left;">
+      <ul style="font-size: large; text-align:left;" v-show="this.showPlayListCount >= 3">
         <li v-for="(link, index) in links" :key="index">
           <a @click.prevent="playAudio(link)">{{ link.text }}</a>
         </li>
@@ -76,7 +78,8 @@ export default {
       ],
       nowPlaying: '',
       isPlaying: false,
-      currentPlayingIndex: -1
+      currentPlayingIndex: -1,
+      showPlayListCount: 0
     }
   },
   methods: {
@@ -101,6 +104,10 @@ export default {
         this.currentPlayingIndex = 0
         this.playAudio(this.links[this.currentPlayingIndex])
       }
+    },
+    clickIcon () {
+      this.showPlayListCount += 1
+      console.log(this.$route.query.test)
     }
   },
   components: {
