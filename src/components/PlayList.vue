@@ -13,7 +13,7 @@
         HTML5 MP3 audio required (Chrome, Safari, IE 9?)
       </audio>
 
-      <ul style="font-size: large; text-align:left;" v-show="this.showPlayListCount >= 3">
+      <ul style="font-size: large; text-align:left;" v-show="this.showPlayListCount >= 5">
         <li v-for="(link, index) in links" :key="index">
           <a @click.prevent="playAudio(link)">{{ link.text }}</a>
         </li>
@@ -93,7 +93,8 @@ export default {
       nowPlaying: '',
       isPlaying: false,
       currentPlayingIndex: -1,
-      showPlayListCount: 0
+      showPlayListCount: 0,
+      isSinglePlay: false
     }
   },
   methods: {
@@ -106,10 +107,26 @@ export default {
           this.currentPlayingIndex = this.links.indexOf(link)
           this.nowPlaying = link.text
           this.isPlaying = true
+          this.isSinglePlay = false
+        }
+      })
+    },
+    singlePlayAudio (link) {
+      this.$nextTick(() => {
+        const audio = this.$refs.audio
+        if (audio) {
+          audio.src = 'https://cdn.discordapp.com/attachments' + link.url + '.mp3'
+          audio.play()
+          this.currentPlayingIndex = this.links.indexOf(link)
+          this.nowPlaying = link.text
+          this.isPlaying = true
         }
       })
     },
     skip () {
+      if (this.isSinglePlay) {
+        return
+      }
       this.nowPlaying = ''
       this.currentPlayingIndex++
       if (this.currentPlayingIndex < this.links.length) {
@@ -121,7 +138,6 @@ export default {
     },
     clickIcon () {
       this.showPlayListCount += 1
-      console.log(this.$route.query.test)
     }
   },
   components: {
@@ -144,13 +160,17 @@ export default {
     const channel = getParameterByName('channel')
     const file = getParameterByName('file')
 
-    // 根據提取的參數設定 meta 屬性的值
-    document.querySelector('meta[property="og:title"]').setAttribute('content', '音訊標題')
-    // document.querySelector('meta[property="og:description"]').setAttribute('content', '音訊描述')
-    document.querySelector('meta[property="og:type"]').setAttribute('content', 'music.song')
-    document.querySelector('meta[property="og:url"]').setAttribute('content', window.location.href)
-    document.querySelector('meta[property="og:audio"]').setAttribute('content', `https://cdn.discordapp.com/attachments/${group}/${channel}/${file}.mp3`)
-    document.querySelector('meta[property="og:audio:type"]').setAttribute('content', 'audio/mpeg')
+    if (group && channel && file) {
+      const path = `/${group}/${channel}/${file}`
+      for (let i = 0; i < this.links.length; i++) {
+        if (path === this.links[i].url) {
+          this.nowPlaying = this.links[i].text
+          this.singlePlayAudio(this.links[i])
+          this.isSinglePlay = true
+          break
+        }
+      }
+    }
   }
 }
 
