@@ -1,2 +1,0 @@
-"use strict";(self["webpackChunkbutton_with_sound"]=self["webpackChunkbutton_with_sound"]||[]).push([[443],{3234:function(n,t,u){u.r(t),u.d(t,{default:function(){return f}});var r=u(3396);const s={class:"about"},e=(0,r._)("h1",null,"這一頁要放甚麼?",-1),o=[e];function c(n,t){return(0,r.wg)(),(0,r.iD)("div",s,o)}var a=u(89);const i={},d=(0,a.Z)(i,[["render",c]]);var f=d}}]);
-//# sourceMappingURL=about.33506a2b.js.map
