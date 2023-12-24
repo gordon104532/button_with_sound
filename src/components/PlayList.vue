@@ -126,6 +126,31 @@ export default {
   },
   components: {
     Vue3Marquee
+  },
+  mounted () {
+    // 從 URL 查詢字串中擷取參數的函式
+    const getParameterByName = (name, url) => {
+      if (!url) url = window.location.href
+      name = name.replace(/[[\]]/g, '\\$&')
+      const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
+      const results = regex.exec(url)
+      if (!results) return null
+      if (!results[2]) return ''
+      return decodeURIComponent(results[2].replace(/\+/g, ' '))
+    }
+
+    // 從網址參數中獲取所需的值
+    const group = getParameterByName('group')
+    const channel = getParameterByName('channel')
+    const file = getParameterByName('file')
+
+    // 根據提取的參數設定 meta 屬性的值
+    document.querySelector('meta[property="og:title"]').setAttribute('content', '音訊標題')
+    // document.querySelector('meta[property="og:description"]').setAttribute('content', '音訊描述')
+    document.querySelector('meta[property="og:type"]').setAttribute('content', 'music.song')
+    document.querySelector('meta[property="og:url"]').setAttribute('content', window.location.href)
+    document.querySelector('meta[property="og:audio"]').setAttribute('content', `https://cdn.discordapp.com/attachments/${group}/${channel}/${file}.mp3`)
+    document.querySelector('meta[property="og:audio:type"]').setAttribute('content', 'audio/mpeg')
   }
 }
 
