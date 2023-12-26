@@ -13,7 +13,7 @@
         HTML5 MP3 audio required (Chrome, Safari, IE 9?)
       </audio>
 
-      <ul style="font-size: large; text-align:left;" v-show="this.showPlayListCount >= 5">
+      <ul :style="getListStyle" v-show="this.showPlayListCount >= 5">
         <li v-for="(link, index) in links" :key="index">
           <a @click.prevent="playAudio(link)">{{ link.text }}</a>
         </li>
@@ -30,6 +30,7 @@ export default {
     return {
       links: [
         { text: '自然-How Far Ill Go', url: '/814901851975057408/1181220338110046249/20220513__How_Far_Ill_Go' },
+        { text: '自然-好喜歡這首', url: '/1077652500578050048/1189222748011122739/20231222__' },
         { text: '自然-萬千花蕊慈母悲哀', url: '/1077652500578050048/1084187713558810715/20211103__' },
         { text: '自然-Flos', url: '/1077652500578050048/1083399203222458458/20230309__Flos' },
         { text: '自然-妄想代償聯盟', url: '/1077652500578050048/1082375872897634374/20230306__' },
@@ -41,7 +42,8 @@ export default {
         { text: '自然-Price Tag', url: '/814901851975057408/1171460108660781167/20231029__Price_Tag' },
         { text: '自然-Old Town Road', url: '/814901851975057408/1171464772282224650/20231029__Old_Town_Road' },
         { text: '自然-Uptown Funk', url: '/814901851975057408/1171463442637537280/20231029__Uptown_Funk' },
-        { text: '自然-妄想代償聯盟', url: '/814901851975057408/1186707125762801665/20230306__' },
+        { text: '自然-Into the Unknown', url: '/814901851975057408/1189221205358673920/20231222__Into_the_Unknown' },
+        { text: 'Mix-The Loneliest Girl', url: '/1077652500578050048/1189237709605191800/20231222_Mix_The_Loneliest_Girl' },
         { text: '拿喔-恐山ル・ヴォワール', url: '/846404573064200246/1181256513394843648/20211112__' },
         { text: '拿喔-我好想你', url: '/846404573064200246/1180568898995757077/20211204__' },
         { text: '拿喔-無法度安奈', url: '/1177468099444871229/1177635054466383902/-' },
@@ -94,7 +96,22 @@ export default {
       isPlaying: false,
       currentPlayingIndex: -1,
       showPlayListCount: 0,
-      isSinglePlay: false
+      isSinglePlay: false,
+      columnCount: 2 // Initial column count
+    }
+  },
+  computed: {
+    isMobile () {
+      return window.innerWidth <= 768 // Adjust this breakpoint as needed
+    },
+    getListStyle () {
+      return {
+        fontSize: 'large',
+        textAlign: 'left',
+        '-webkit-column-count': this.columnCount,
+        '-moz-column-count': this.columnCount,
+        'column-count': this.columnCount
+      }
     }
   },
   methods: {
@@ -138,12 +155,22 @@ export default {
     },
     clickIcon () {
       this.showPlayListCount += 1
+    },
+    handleResize () {
+      if (window.innerWidth <= 768) {
+        this.columnCount = 1 // For mobile, set to 1 column
+      } else {
+        this.columnCount = 2 // For desktop, set to 2 columns
+      }
     }
   },
   components: {
     Vue3Marquee
   },
   mounted () {
+    window.addEventListener('resize', this.handleResize)
+    this.handleResize()
+
     // 從 URL 查詢字串中擷取參數的函式
     const getParameterByName = (name, url) => {
       if (!url) url = window.location.href
@@ -171,17 +198,14 @@ export default {
         }
       }
     }
+  },
+  beforeUnmount () {
+    window.removeEventListener('resize', this.handleResize)
   }
 }
 
 </script>
   <style scoped>
-  ul {
-    -webkit-column-count: 2;
-    -moz-column-count: 2;
-    column-count: 2;
-  }
-
   li:hover {
     text-decoration: underline;
   }
