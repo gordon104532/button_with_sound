@@ -1,7 +1,8 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/share">Share</router-link>
+    <router-link to="/share">Share</router-link> |
+    <router-link to="/sound_pad">SoundPad</router-link>
   </nav>
   <router-view/>
 </template>

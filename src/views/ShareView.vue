@@ -13,7 +13,7 @@
 
     <div>
       <h3>白澤大哥哥的頻道</h3>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/F8UnNgTxyN8?si=dk-FbKf1GRXIlV7Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <iframe width="100%" height="315" src="https://www.youtube.com/embed/F8UnNgTxyN8?si=dk-FbKf1GRXIlV7Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
 
     <br>
@@ -21,7 +21,7 @@
 
     <div>
       <h3>威廉大哥哥的頻道</h3>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/4iDU1GN3ssc?si=p0nzBa_TrA9qYSm0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <iframe width="100%" height="315" src="https://www.youtube.com/embed/4iDU1GN3ssc?si=p0nzBa_TrA9qYSm0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
   </div>
 </template>

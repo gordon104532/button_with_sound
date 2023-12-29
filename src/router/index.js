@@ -14,6 +14,11 @@ const routes = [
     // this generates a separate chunk (share.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "share" */ '../views/ShareView.vue')
+  },
+  {
+    path: '/sound_pad',
+    name: 'soundPad',
+    component: () => import(/* webpackPrefetch: true */ '../views/SoundPadView.vue')
   }
 ]
 

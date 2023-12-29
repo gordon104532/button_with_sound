@@ -183,12 +183,12 @@ export default {
     }
 
     // 從網址參數中獲取所需的值
-    const group = getParameterByName('group')
     const channel = getParameterByName('channel')
+    const msg = getParameterByName('msg')
     const file = getParameterByName('file')
 
-    if (group && channel && file) {
-      const path = `/${group}/${channel}/${file}`
+    if (channel && msg && file) {
+      const path = `/${channel}/${msg}/${file}`
       for (let i = 0; i < this.links.length; i++) {
         if (path === this.links[i].url) {
           this.nowPlaying = this.links[i].text
@@ -205,7 +205,8 @@ export default {
 }
 
 </script>
-  <style scoped>
+
+<style scoped>
   li:hover {
     text-decoration: underline;
   }
