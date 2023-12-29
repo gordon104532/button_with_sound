@@ -159,6 +159,8 @@ export default {
     handleResize () {
       if (window.innerWidth <= 768) {
         this.columnCount = 1 // For mobile, set to 1 column
+      } else if (window.innerWidth > 1280) {
+        this.columnCount = 3
       } else {
         this.columnCount = 2 // For desktop, set to 2 columns
       }
