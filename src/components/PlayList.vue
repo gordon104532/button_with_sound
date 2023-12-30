@@ -3,6 +3,7 @@
       <img width="15%" height="15%" alt="logo" src="../assets/logo.png" v-on:click="clickIcon">
 
       <h2>罐製ㄉ播放器</h2>
+      <!-- 歌名 -->
       <div v-show="isPlaying">
         <Vue3Marquee class="marquee">
           <h3>{{ nowPlaying }}</h3>
@@ -13,6 +14,12 @@
         HTML5 MP3 audio required (Chrome, Safari, IE 9?)
       </audio>
 
+      <div>
+        <!-- 分享按鈕 -->
+        <button type="button" class="btn btn-light" v-on:click="copyToClipboard">分享連結</button>
+      </div>
+
+      <!-- 歌單 -->
       <ul :style="getListStyle" v-show="this.showPlayListCount >= 5">
         <li v-for="(link, index) in links" :key="index">
           <a @click.prevent="playAudio(link)">{{ link.text }}</a>
@@ -24,6 +31,7 @@
 
 <script>
 import { Vue3Marquee } from 'vue3-marquee'
+// import Clipboard from 'clipboard'
 
 export default {
   data () {
@@ -31,10 +39,6 @@ export default {
       links: [
         { text: '自然-How Far Ill Go', url: '/814901851975057408/1181220338110046249/20220513__How_Far_Ill_Go' },
         { text: '自然-好喜歡這首', url: '/1077652500578050048/1189222748011122739/20231222__' },
-        { text: '自然-萬千花蕊慈母悲哀', url: '/1077652500578050048/1084187713558810715/20211103__' },
-        { text: '自然-Flos', url: '/1077652500578050048/1083399203222458458/20230309__Flos' },
-        { text: '自然-妄想代償聯盟', url: '/1077652500578050048/1082375872897634374/20230306__' },
-        { text: '自然-ジェニ', url: '/814901851975057408/1171476299391438869/20231029__' },
         // { text: '自然-還不是因為你長得不好看', url: '/814901851975057408/1172986670950395975/20211111__' },
         { text: '自然-Reflection', url: '/814901851975057408/1171483933385433239/20231029__Reflection' },
         { text: '自然-I Really Want To Stay At Your House', url: '/814901851975057408/1171452735812534272/20231029__i_really_want_to_stay_at_your_house' },
@@ -43,7 +47,20 @@ export default {
         { text: '自然-Old Town Road', url: '/814901851975057408/1171464772282224650/20231029__Old_Town_Road' },
         { text: '自然-Uptown Funk', url: '/814901851975057408/1171463442637537280/20231029__Uptown_Funk' },
         { text: '自然-Into the Unknown', url: '/814901851975057408/1189221205358673920/20231222__Into_the_Unknown' },
+        { text: '自然-Flashlight', url: '/1190754641458241606/1190757854521593948/20231222__Flashlight' },
+        { text: '自然_If I Ain\'t Got You', url: '/1190754641458241606/1190757622446563479/20231222__If_I_Aint_Got_You' },
+        { text: '自然-Love Story', url: '/1190754641458241606/1190757264575963218/20231222__Love_Story' },
+        { text: '自然-Pay phone', url: '/1190754641458241606/1190756224959008799/20231222__Pay_phone' },
+        { text: '自然-River', url: '/1190754641458241606/1190754703626223709/20231222__River' },
+        { text: '自然-The Loneliest Girl', url: '/1190754641458241606/1190756546012004352/20231222__The_Loneliest_Girl' },
         { text: 'Mix-The Loneliest Girl', url: '/1077652500578050048/1189237709605191800/20231222_Mix_The_Loneliest_Girl' },
+        { text: '自然-萬千花蕊慈母悲哀', url: '/1077652500578050048/1084187713558810715/20211103__' },
+        { text: '自然-Flos', url: '/1077652500578050048/1083399203222458458/20230309__Flos' },
+        { text: '自然-妄想代償聯盟', url: '/1077652500578050048/1082375872897634374/20230306__' },
+        { text: '自然-ジェニ', url: '/814901851975057408/1171476299391438869/20231029__' },
+        { text: '自然-不可幸力', url: '/1190754641458241606/1190755321648517150/20231222__' },
+        { text: '自然-デスぺレート', url: '/1190754641458241606/1190755848637645001/20231222__' },
+        { text: '自然_謎', url: '1190754641458241606/1190760239348338698/20231222__' },
         { text: '拿喔-恐山ル・ヴォワール', url: '/846404573064200246/1181256513394843648/20211112__' },
         { text: '拿喔-我好想你', url: '/846404573064200246/1180568898995757077/20211204__' },
         { text: '拿喔-無法度安奈', url: '/1177468099444871229/1177635054466383902/-' },
@@ -93,6 +110,7 @@ export default {
         { text: '林梅-失重前幸福', url: '/994991815650443357/1078341526997979217/-Ivy_-_' }
       ],
       nowPlaying: '',
+      nowPlayingUrl: '',
       isPlaying: false,
       currentPlayingIndex: -1,
       showPlayListCount: 0,
@@ -123,6 +141,7 @@ export default {
           audio.play()
           this.currentPlayingIndex = this.links.indexOf(link)
           this.nowPlaying = link.text
+          this.nowPlayingUrl = this.link.text
           this.isPlaying = true
           this.isSinglePlay = false
         }
@@ -164,6 +183,27 @@ export default {
       } else {
         this.columnCount = 2 // For desktop, set to 2 columns
       }
+    },
+    // 組成要複製到剪貼簿的文字
+    generateClipboardText () {
+      if (!this.nowPlayingUrl) {
+        console.error('nowPlayingUrl不存在')
+        return
+      }
+
+      // 組成 URL
+      const parts = this.nowPlayingUrl.split('/')
+      const copiedText = `https://gordon104532.github.io/button_with_sound/#/?channel=${parts[1]}&msg=${parts[2]}&file=${parts[3]}`
+      return copiedText
+    },
+    // 複製文字到剪貼簿
+    async copyToClipboard () {
+      try {
+        await navigator.clipboard.writeText(this.generateClipboardText())
+        console.log('已成功複製到剪貼簿')
+      } catch ($e) {
+        console.error('複製失敗')
+      }
     }
   },
   components: {
@@ -194,6 +234,7 @@ export default {
       for (let i = 0; i < this.links.length; i++) {
         if (path === this.links[i].url) {
           this.nowPlaying = this.links[i].text
+          this.nowPlayingUrl = this.links[i].url
           this.singlePlayAudio(this.links[i])
           this.isSinglePlay = true
           break
@@ -210,14 +251,14 @@ export default {
 
 <style scoped>
   li:hover {
-    text-decoration: underline;
+    text-decoration: underline
   }
 
   li.playing {
-    font-weight: bold;
+    font-weight: bold
   }
 
   marquee {
-    width: 150px;
+    width: 150px
   }
 </style>
