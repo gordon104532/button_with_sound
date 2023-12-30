@@ -14,7 +14,7 @@
         HTML5 MP3 audio required (Chrome, Safari, IE 9?)
       </audio>
 
-      <div>
+      <div style="padding:5px">
         <!-- 分享按鈕 -->
         <button type="button" class="btn btn-light" v-on:click="copyToClipboard">分享連結</button>
       </div>
@@ -140,7 +140,7 @@ export default {
           audio.play()
           this.currentPlayingIndex = this.links.indexOf(link)
           this.nowPlaying = link.text
-          this.nowPlayingUrl = this.link.text
+          this.nowPlayingUrl = link.url
           this.isPlaying = true
           this.isSinglePlay = false
         }
@@ -185,11 +185,6 @@ export default {
     },
     // 組成要複製到剪貼簿的文字
     generateClipboardText () {
-      if (!this.nowPlayingUrl) {
-        console.error('nowPlayingUrl不存在')
-        return
-      }
-
       // 組成 URL
       const parts = this.nowPlayingUrl.split('/')
       const copiedText = `https://gordon104532.github.io/button_with_sound/#/?channel=${parts[1]}&msg=${parts[2]}&file=${parts[3]}`
@@ -197,6 +192,11 @@ export default {
     },
     // 複製文字到剪貼簿
     async copyToClipboard () {
+      if (!this.nowPlayingUrl) {
+        console.error('nowPlayingUrl不存在')
+        return
+      }
+
       try {
         await navigator.clipboard.writeText(this.generateClipboardText())
         console.log('已成功複製到剪貼簿')
