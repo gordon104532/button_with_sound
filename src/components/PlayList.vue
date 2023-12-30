@@ -31,7 +31,6 @@
 
 <script>
 import { Vue3Marquee } from 'vue3-marquee'
-// import Clipboard from 'clipboard'
 
 export default {
   data () {
