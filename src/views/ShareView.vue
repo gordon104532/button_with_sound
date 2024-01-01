@@ -7,21 +7,43 @@
       <a href="https://soundcloud.com/engblue" title="EngBlue波普貓在英格藍" target="_blank" style="color: #cccccc; text-decoration: none;">EngBlue波普貓在英格藍</a>
       <a href="https://soundcloud.com/engblue/lost-stars-keira-knightleycover" title="Lost Stars - Keira Knightley(cover)" target="_blank" style="color: #cccccc; text-decoration: none;">Lost Stars - Keira Knightley(cover)</a>
     </div>
-
-    <br>
     <br>
 
     <div>
       <h3>白澤大哥哥的頻道</h3>
       <iframe width="100%" height="315" src="https://www.youtube.com/embed/F8UnNgTxyN8?si=dk-FbKf1GRXIlV7Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
-
-    <br>
     <br>
 
     <div>
       <h3>威廉大哥哥的頻道</h3>
       <iframe width="100%" height="315" src="https://www.youtube.com/embed/4iDU1GN3ssc?si=p0nzBa_TrA9qYSm0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
+    <br>
+
+    <div>
+      <h3>明透 -ᴀsᴜ-</h3>
+      <iframe src="http://www.youtube.com/embed/videoseries?list=OLAK5uy_mHznvDVd-q4oxW5TOkt8vgpIRYsz0gQKY" width="100%" height="315"></iframe>
+    </div>
+    <br>
+
+    <div>
+      <h3>LOLUET</h3>
+      <iframe src="http://www.youtube.com/embed/videoseries?list=PLQ4eIpo7Zyev-mokzaLfbN0uvX-83Of9o&index=11" width="100%" height="315"></iframe>
+    </div>
+    <br>
+
+    <div>
+      <h3>來-Ray-</h3>
+      <iframe src="http://www.youtube.com/embed/videoseries?list=PLozd0hi0a-PRJIl3dXDTFYshZ1YM07a2W" width="100%" height="315"></iframe>
+    </div>
+    <br>
+
+    <div>
+      <h3>超学生-</h3>
+      <iframe src="http://www.youtube.com/embed/videoseries?list=UULPxIK6x6sG7Ln5vjjPYpgeAw" width="100%" height="315"></iframe>
+    </div>
+    <br>
+
   </div>
 </template>
