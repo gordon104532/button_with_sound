@@ -1,6 +1,6 @@
 <template>
   <div class="SoundPad">
-    <div id="content" style="background-color: antiquewhite; width: 100%;">
+    <div id="content" style="background-color: inherit; max-width: 90%;">
       <SoundPad :files="soundList" :button-bg-color="buttonBgColor"></SoundPad>
     </div>
   </div>

@@ -23,25 +23,25 @@
 
     <div>
       <h3>明透 -ᴀsᴜ-</h3>
-      <iframe src="http://www.youtube.com/embed/videoseries?list=OLAK5uy_mHznvDVd-q4oxW5TOkt8vgpIRYsz0gQKY" width="100%" height="315"></iframe>
+      <iframe src="https://www.youtube.com/embed/videoseries?list=OLAK5uy_mHznvDVd-q4oxW5TOkt8vgpIRYsz0gQKY" width="100%" height="315"></iframe>
     </div>
     <br>
 
     <div>
       <h3>LOLUET</h3>
-      <iframe src="http://www.youtube.com/embed/videoseries?list=PLQ4eIpo7Zyev-mokzaLfbN0uvX-83Of9o&index=11" width="100%" height="315"></iframe>
+      <iframe src="https://www.youtube.com/embed/videoseries?list=PLQ4eIpo7Zyev-mokzaLfbN0uvX-83Of9o&index=11" width="100%" height="315"></iframe>
     </div>
     <br>
 
     <div>
       <h3>來-Ray-</h3>
-      <iframe src="http://www.youtube.com/embed/videoseries?list=PLozd0hi0a-PRJIl3dXDTFYshZ1YM07a2W" width="100%" height="315"></iframe>
+      <iframe src="https://www.youtube.com/embed/videoseries?list=PLozd0hi0a-PRJIl3dXDTFYshZ1YM07a2W" width="100%" height="315"></iframe>
     </div>
     <br>
 
     <div>
-      <h3>超学生-</h3>
-      <iframe src="http://www.youtube.com/embed/videoseries?list=UULPxIK6x6sG7Ln5vjjPYpgeAw" width="100%" height="315"></iframe>
+      <h3>超学生</h3>
+      <iframe src="https://www.youtube.com/embed/videoseries?list=UULPxIK6x6sG7Ln5vjjPYpgeAw" width="100%" height="315"></iframe>
     </div>
     <br>
 

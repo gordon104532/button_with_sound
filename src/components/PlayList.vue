@@ -1,8 +1,8 @@
 <template>
     <div>
-      <img width="15%" height="15%" alt="logo" src="../assets/logo.png" v-on:click="clickIcon">
+      <img style="padding:5px" width="15%" height="15%" alt="logo" src="../assets/logo.png" v-on:click="clickIcon">
 
-      <h2>罐製ㄉ播放器</h2>
+      <h2 style="padding:5px">罐製ㄉ播放器</h2>
       <!-- 歌名 -->
       <div v-show="isPlaying">
         <Vue3Marquee class="marquee">
@@ -14,17 +14,19 @@
         HTML5 MP3 audio required (Chrome, Safari, IE 9?)
       </audio>
 
-      <div style="padding:5px">
-        <!-- 分享按鈕 -->
-        <button type="button" class="btn btn-light" v-on:click="copyToClipboard">分享連結</button>
-      </div>
+      <div v-show="this.showPlayListCount >= 5">
+        <div style="padding:5px">
+          <!-- 分享按鈕 -->
+          <button type="button" class="btn btn-light" v-on:click="copyToClipboard">分享連結</button>
+        </div>
 
-      <!-- 歌單 -->
-      <ul :style="getListStyle" v-show="this.showPlayListCount >= 5">
-        <li v-for="(link, index) in links" :key="index">
-          <a @click.prevent="playAudio(link)">{{ link.text }}</a>
-        </li>
-      </ul>
+        <!-- 歌單 -->
+        <ul :style="getListStyle" >
+          <li v-for="(link, index) in links" :key="index">
+            <a @click.prevent="playAudio(link)">{{ link.text }}</a>
+          </li>
+        </ul>
+      </div>
 
     </div>
 </template>
@@ -201,12 +203,25 @@ export default {
         return
       }
 
+      const el = document.createElement('textarea')
+      el.value = this.generateClipboardText()
+      el.setAttribute('readonly', '')
+      el.style.position = 'absolute'
+      el.style.left = '-9999px'
+      document.body.appendChild(el)
+
+      el.select()
+      el.setSelectionRange(0, 99999) // For mobile devices
+
       try {
-        await navigator.clipboard.writeText(this.generateClipboardText())
-        console.log('已成功複製到剪貼簿')
-      } catch ($e) {
-        console.error('複製失敗')
+        const successful = document.execCommand('copy')
+        const message = successful ? '已成功複製到剪貼簿' : '複製失敗'
+        console.log(message)
+      } catch (error) {
+        console.error('複製失敗', error)
       }
+
+      document.body.removeChild(el)
     }
   },
   components: {

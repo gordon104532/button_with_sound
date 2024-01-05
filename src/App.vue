@@ -14,6 +14,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: inherit;
 }
 
 nav {
@@ -27,5 +28,22 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #17a565;
+}
+
+.main {
+  background-color: antiquewhite;
+}
+
+@media (prefers-color-scheme: dark) {
+  .main {
+    background-color: #15202b!important;
+  }
+  #app {
+    color: #e4e4e4;
+  }
+  nav a {
+    font-weight: bold;
+    color: #e4e4e4;
+  }
 }
 </style>
