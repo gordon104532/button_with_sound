@@ -20,6 +20,11 @@ const routes = [
     path: '/sound_pad',
     name: 'soundPad',
     component: () => import(/* webpackPrefetch: true */ '../views/SoundPadView.vue')
+  },
+  {
+    path: '/snow',
+    name: 'snow',
+    component: () => import(/* webpackPrefetch: true */ '../views/SnowView.vue')
   }
 ]
 
