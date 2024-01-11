@@ -10,37 +10,49 @@
     <br>
 
     <div>
-      <h3>白澤大哥哥的頻道</h3>
+      <h3>
+        <a href="https://www.youtube.com/@baize0w0" target="_blank" title="白澤大哥哥的頻道">白澤大哥哥的頻道</a>
+      </h3>
       <iframe width="100%" height="315" src="https://www.youtube.com/embed/F8UnNgTxyN8?si=dk-FbKf1GRXIlV7Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
     <br>
 
     <div>
-      <h3>威廉大哥哥的頻道</h3>
+      <h3>
+        <a href="https://www.youtube.com/@silence3u06" target="_blank" title="威廉大哥哥的頻道">威廉大哥哥的頻道</a>
+      </h3>
       <iframe width="100%" height="315" src="https://www.youtube.com/embed/4iDU1GN3ssc?si=p0nzBa_TrA9qYSm0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
     <br>
 
     <div>
-      <h3>明透 -ᴀsᴜ-</h3>
+      <h3>
+        <a href="https://www.youtube.com/channel/UCBLGjbYv6-xxju1i44RjnnA" target="_blank" title="明透 -ᴀsu-">明透 -ᴀsu-</a>
+      </h3>
       <iframe src="https://www.youtube.com/embed/videoseries?list=OLAK5uy_mHznvDVd-q4oxW5TOkt8vgpIRYsz0gQKY" width="100%" height="315"></iframe>
     </div>
     <br>
 
     <div>
-      <h3>LOLUET</h3>
-      <iframe src="https://www.youtube.com/embed/videoseries?list=PLQ4eIpo7Zyev-mokzaLfbN0uvX-83Of9o&index=11" width="100%" height="315"></iframe>
+      <h3>
+        <a href="https://www.youtube.com/@LOLUET" target="_blank" title="LOLUET">LOLUET</a>
+      </h3>
+      <iframe src="https://www.youtube.com/embed/videoseries?list=PLQ4eIpo7ZyeuTC97V-w0sj16Q8zXx3yBU&index=1" width="100%" height="315"></iframe>
     </div>
     <br>
 
     <div>
-      <h3>來-Ray-</h3>
+      <h3>
+        <a href="https://www.youtube.com/@rayray_429" target="_blank" title="來-Ray-">來-Ray-</a>
+      </h3>
       <iframe src="https://www.youtube.com/embed/videoseries?list=PLozd0hi0a-PRJIl3dXDTFYshZ1YM07a2W" width="100%" height="315"></iframe>
     </div>
     <br>
 
     <div>
-      <h3>超学生</h3>
+      <h3>
+        <a href="https://www.youtube.com/@ChogakuseiOfficial" target="_blank" title="超学生-">超学生</a>
+      </h3>
       <iframe src="https://www.youtube.com/embed/videoseries?list=UULPxIK6x6sG7Ln5vjjPYpgeAw" width="100%" height="315"></iframe>
     </div>
     <br>
