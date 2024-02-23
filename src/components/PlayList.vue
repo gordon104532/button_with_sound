@@ -54,7 +54,7 @@ export default {
         { text: '自然-Pay phone', url: '/1190754641458241606/1190756224959008799/20231222__Pay_phone' },
         { text: '自然-River', url: '/1190754641458241606/1190754703626223709/20231222__River' },
         { text: '自然-The Loneliest Girl', url: '/1190754641458241606/1190756546012004352/20231222__The_Loneliest_Girl' },
-        { text: 'Mix-The Loneliest Girl', url: '/1077652500578050048/1189237709605191800/20231222_Mix_The_Loneliest_Girl' },
+        { text: 'Mash-The Loneliest Girl', url: '/1077652500578050048/1189237709605191800/20231222_Mix_The_Loneliest_Girl' },
         { text: '自然-萬千花蕊慈母悲哀', url: '/1077652500578050048/1084187713558810715/20211103__' },
         { text: '自然-Flos', url: '/1077652500578050048/1083399203222458458/20230309__Flos' },
         { text: '自然-妄想代償聯盟', url: '/1077652500578050048/1082375872897634374/20230306__' },
@@ -120,7 +120,9 @@ export default {
       currentPlayingIndex: -1,
       showPlayListCount: 0,
       isSinglePlay: false,
-      columnCount: 2 // Initial column count
+      columnCount: 2, // Initial column count
+      statement: 'dc檔案有有效期限所以原本連結都過期了,要帶一堆參數,我再想想辦法,這個你先聽一下😥',
+      tempAudio: 'https://cdn.discordapp.com/attachments/833015408357146634/1181236935793070120/20211225__.mp3?ex=65e5d71f&is=65d3621f&hm=cdf3656097998129cc96d2e0c6d821a010fd2871ac21a81288fcf6a44a1a4fb7&'
     }
   },
   computed: {
@@ -142,10 +144,13 @@ export default {
       this.$nextTick(() => {
         const audio = this.$refs.audio
         if (audio) {
-          audio.src = 'https://cdn.discordapp.com/attachments' + link.url + '.mp3'
+          audio.src = this.tempAudio
+          // audio.src = 'https://cdn.discordapp.com/attachments' + link.url + '.mp3'
           audio.play()
           this.currentPlayingIndex = this.links.indexOf(link)
-          this.nowPlaying = link.text
+          this.nowPlaying = this.statement
+          console.log(this.statement)
+          // this.nowPlaying = link.text
           this.nowPlayingUrl = link.url
           this.isPlaying = true
           this.isSinglePlay = false
@@ -156,10 +161,12 @@ export default {
       this.$nextTick(() => {
         const audio = this.$refs.audio
         if (audio) {
-          audio.src = 'https://cdn.discordapp.com/attachments' + link.url + '.mp3'
+          audio.src = this.tempAudio
+          // audio.src = 'https://cdn.discordapp.com/attachments' + link.url + '.mp3'
           audio.play()
           this.currentPlayingIndex = this.links.indexOf(link)
-          this.nowPlaying = link.text
+          this.nowPlaying = this.statement
+          // this.nowPlaying = link.text
           this.isPlaying = true
         }
       })
@@ -251,7 +258,8 @@ export default {
       const path = `/${channel}/${msg}/${file}`
       for (let i = 0; i < this.links.length; i++) {
         if (path === this.links[i].url) {
-          this.nowPlaying = this.links[i].text
+          this.nowPlaying = this.statement
+          // this.nowPlaying = this.links[i].text
           this.nowPlayingUrl = this.links[i].url
           this.singlePlayAudio(this.links[i])
           this.isSinglePlay = true
