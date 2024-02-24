@@ -149,7 +149,6 @@ export default {
           audio.play()
           this.currentPlayingIndex = this.links.indexOf(link)
           this.nowPlaying = this.statement
-          console.log(this.statement)
           // this.nowPlaying = link.text
           this.nowPlayingUrl = link.url
           this.isPlaying = true
