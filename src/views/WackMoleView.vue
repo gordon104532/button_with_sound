@@ -1,21 +1,22 @@
 <template>
 <div id="mole">
   <div>
-    <h1>蘑菇? 蘑菇! <br>
+    <h1>蘑菇? 蘑菇!<br>
       <span class="score">0</span>
       </h1>
       <div class="d-grid gap-2 d-md-block mx-auto">
-        <button @click="startGame" class="btn btn-primary mt-2">開始蘑菇</button>
+        <button @click="startGame" class="btn btn-primary mt-3">開始蘑菇</button>
         </div>
     </div>
 
   <div class="game">
-    <div v-for="index in 9" :key="index" :class="'hole hole' + index">
+    <div v-for="index in this.holeCount" :key="index" :class="'hole hole' + index">
       <div class="mole"></div>
       </div>
     </div>
   </div>
 
+  <dif class="credit">credit: 一尾懶鯉魚</dif>
   </template>
 
 <script>
@@ -26,7 +27,9 @@ export default {
   el: '#mole',
   data () {
     return {
+      holeCount: 9,
       currentScore: 0,
+      isStart: false,
       turnOff: false,
       lastHole: null,
       moles: [],
@@ -34,6 +37,11 @@ export default {
     }
   },
   mounted () {
+    if (window.innerWidth <= 768) { // For mobile
+      const game = document.querySelector('.game')
+      game.style = 'width: ' + window.outerWidth + 'px; height: ' + window.outerHeightHeight + 'px;'
+    }
+
     this.moles = document.querySelectorAll('.mole')
     this.moles.forEach(mole => {
       mole.addEventListener('click', this.score)
@@ -41,13 +49,17 @@ export default {
   },
   methods: {
     startGame () {
-      if (this.turnOff) return
+      // lock
+      if (this.isStart) return
+
+      this.isStart = true
       this.currentScore = 0
       document.querySelector('.score').textContent = this.currentScore
       this.popUp()
       this.bgmAudio.play()
       setTimeout(() => {
         this.turnOff = true
+        this.isStart = false
       }, 37000)
     },
     popUp () {
@@ -72,7 +84,7 @@ export default {
     },
     randomHoles () {
       const holes = document.querySelectorAll('.hole')
-      const index = Math.floor(Math.random() * 9)
+      const index = Math.floor(Math.random() * this.holeCount)
       const currentHole = holes[index]
       if (currentHole === this.lastHole) {
         return this.randomHoles()
@@ -168,7 +180,7 @@ h1 {
   height: 70px;
   position: absolute;
   z-index: 2;
-  bottom: -30px;
+  bottom: -25px;
 }
 
 .mole {
@@ -183,5 +195,11 @@ h1 {
 
 .hole.up .mole {
   top: 0;
+}
+
+.credit {
+  position: fixed;
+  right: 20px;
+  bottom: 10px;
 }
 </style>
