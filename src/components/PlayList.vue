@@ -1,6 +1,6 @@
 <template>
     <div>
-      <img style="padding:5px" width="15%" height="15%" alt="logo" src="../assets/logo.png" v-on:click="clickIcon">
+      <img style="padding:5px" width="15%" height="15%" alt="logo" src="../assets/img/logo.png" v-on:click="clickIcon">
 
       <h2 style="padding:5px">罐製ㄉ播放器</h2>
       <!-- 歌名 -->
