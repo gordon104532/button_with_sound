@@ -16,7 +16,6 @@
       <div class="d-grid gap-2 d-md-block mx-auto" v-if="!quizStarted">
         <button class="btn btn-primary mx-2" @click="startQuiz">答題</button>
         <button class="btn btn-primary mx-2" @click="startQuiz">出題</button>
-        <button class="btn btn-primary mx-2" @click="goToMolePage">換頁</button>
         </div>
       <div v-else >
         <div v-if="question">
@@ -103,9 +102,6 @@ export default {
         .catch(error => {
           console.error('Error:', error)
         })
-    },
-    goToMolePage () {
-      this.$router.push('/mole')
     }
   }
 }

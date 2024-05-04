@@ -16,6 +16,11 @@ const routes = [
   //   component: QuizView
   // },
   {
+    path: '/quiz',
+    name: 'quiz',
+    component: () => import(/* webpackChunkName: "share" */ '../views/QuizView.vue')
+  },
+  {
     path: '/share',
     name: 'share',
     // route level code-splitting

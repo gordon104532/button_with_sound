@@ -4,6 +4,6 @@ module.exports = defineConfig({
   publicPath: '/button_with_sound/',
   transpileDependencies: true,
   devServer: {
-    proxy: 'http://localhost:8888'
+    proxy: 'http://localhost:8080'
   }
 })
