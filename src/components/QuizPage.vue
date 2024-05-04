@@ -66,7 +66,7 @@ export default {
     },
     getNextQuestion () {
     // Call API to get next question with username query parameter
-      fetch(`/api/quiz?username=${this.nickname}`, {
+      fetch(`${process.env.VUE_APP_BACKEND_URL}/api/quiz?username=${this.nickname}`, {
         method: 'GET'
       })
         .then(response => response.json())
@@ -83,7 +83,7 @@ export default {
     },
     submitAnswer (answer) {
       // Call API to submit answer
-      fetch('/api/quiz', {
+      fetch(`${process.env.VUE_APP_BACKEND_URL}/api/quiz`, {
         method: 'POST',
         body: JSON.stringify({ quiz_id: this.questionId, answer: answer, username: this.nickname }),
         headers: {
