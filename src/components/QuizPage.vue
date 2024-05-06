@@ -193,10 +193,8 @@ export default {
             this.choiceB = ''
 
             this.isSubmitSuccess = true
-            console.log(this.isSubmitSuccess)
             setTimeout(() => {
               this.isSubmitSuccess = false
-              console.log(this.isSubmitSuccess)
             }, 3000)
           } else {
             console.error('Failed to submit quiz.')
