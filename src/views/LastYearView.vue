@@ -1,14 +1,13 @@
 <template>
-    <div class="pope-hbd">
-    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-bar" :style="{ backgroundColor: navbarBgColor }">
-        <div class="container-fluid justify-content-between flex-row" style="user-select: none">
-            <div class="my-1">
-            <a id="brand" class="navbar-brand ms-3" v-on:click="esterEgg">2023 ㄅㄅㄅㄕㄖㄎㄌ</a>
-            </div>
+<div class="pope-hbd">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-bar" :style="{ backgroundColor: navbarBgColor }">
+    <div class="container-fluid justify-content-between flex-row" style="user-select: none">
+        <div class="my-1">
+        <a id="brand" class="navbar-brand ms-3" v-on:click="esterEgg">2023 ㄅㄅㄅㄕㄖㄎㄌ</a>
         </div>
-    </nav>
-
-    <div>
+    </div>
+</nav>
+<div>
         <div v-if="counter > 4 && counter < 49">
           <div style="font-size: xx-large">
             <img src="https://media.discordapp.net/stickers/948615150016020480.png?size=160" alt="popeCat rose" style="width:8%;height:8%;">
@@ -48,15 +47,13 @@
           <div>好了啦 你已經按一百下了</div>
           <div>(*´▽`*)</div>
         </div>
+</div>
+<div class="SoundPad">
+    <div id="content" style="background-color: inherit; max-width: 90%;">
+    <SoundPad :files="soundList" :button-bg-color="buttonBgColor"></SoundPad>
     </div>
-
-    <div class="SoundPad">
-        <div id="content" style="background-color: inherit; max-width: 90%;">
-          <SoundPad :files="soundList" :button-bg-color="buttonBgColor"></SoundPad>
-        </div>
-    </div>
-
-    </div>
+</div>
+</div>
 </template>
 
 <script>
@@ -69,24 +66,28 @@ export default {
   },
   data () {
     return {
+      staticDomain: `${process.env.VUE_APP_BACKEND_URL}/media/soundpad`,
       soundList: [
-        { name: '波黑', path: 'https://cdn.discordapp.com/attachments/1142059224608809040/1142119861464608779/BoHey.mp3' },
-        { name: '好吃', path: 'https://cdn.discordapp.com/attachments/1142059224608809040/1143238789515456512/delicious.mp3' },
-        { name: '沒愛', path: 'https://cdn.discordapp.com/attachments/1142059224608809040/1145053604521193502/NoI.mp3' },
-        { name: '真的', path: 'https://cdn.discordapp.com/attachments/1142059224608809040/1145053719113777313/true.mp3' },
-        { name: '歐虧', path: 'https://cdn.discordapp.com/attachments/1142059224608809040/1145054503792562256/ok.mp3' },
-        { name: '駿ㄍ', path: 'https://cdn.discordapp.com/attachments/1142059224608809040/1145057822783045784/muchun0930.mp3' },
-        { name: '哇塞', path: 'https://cdn.discordapp.com/attachments/1142059224608809040/1145059067027525723/WaSay.mp3' },
-        { name: '到底', path: 'https://cdn.discordapp.com/attachments/1142059224608809040/1145063347427999846/afterAll.mp3' },
-        { name: '亂講', path: 'https://cdn.discordapp.com/attachments/1142059224608809040/1169315259627081869/oBaiGon.mp3' },
-        { name: '好想', path: 'https://cdn.discordapp.com/attachments/1142059224608809040/1158796107216846879/ca1f405328c8ffeb.mp3' }
+        { name: '好想', path: this.staticDomain + '/好想卯咪.mp3' },
+        { name: '生日快熱', path: this.staticDomain + '/生日快熱.mp3' },
+        { name: '喵喵喵', path: this.staticDomain + '/喵喵喵.mp3' },
+        { name: '打狗狗巴掌', path: this.staticDomain + '/打狗狗巴掌.mp3' },
+        { name: '汪汪', path: this.staticDomain + '/卯咪汪汪.mp3' },
+        { name: '我沒看到', path: this.staticDomain + '/我沒看到.mp3' },
+        { name: '駿ㄍ', path: this.staticDomain + '/駿我大哥.mp3' },
+        { name: '哇塞', path: this.staticDomain + '/哇賽2.mp3' },
+        { name: '亂念', path: this.staticDomain + '/亂念.mp3' },
+        { name: '還有十分鐘', path: this.staticDomain + '/還有十分鐘.mp3' },
+        { name: '看錯時間了', path: this.staticDomain + '/看錯時間了.mp3' },
+        { name: '聊天室等我一下', path: this.staticDomain + '/聊天室等我一下.mp3' },
+        { name: '現在是VOD嗎', path: this.staticDomain + '/現在是VOD嗎.mp3' },
+        { name: '記得吃飯', path: this.staticDomain + '/邊哭邊提醒大家要記得吃飯.mp3' }
       ],
       buttonBgColor: '#1582f0',
       navbarBgColor: '#1582f0',
       counter: 0,
-      hbd_song: `${process.env.VUE_APP_BACKEND_URL}/media/soundpad/生日快樂歌.mp3`,
-      laugh_song: `${process.env.VUE_APP_BACKEND_URL}/media/soundpad/笑.mp3`
-
+      hbd_song: this.staticDomain + '/生日快樂歌.mp3',
+      laugh_song: this.staticDomain + '/笑.mp3'
     }
   },
   methods: {

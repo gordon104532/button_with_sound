@@ -109,7 +109,7 @@ export default {
   },
   methods: {
     setNickname () {
-      this.nickname = this.nicknameInput
+      this.nickname = this.nicknameInput.trim()
     },
     startQuiz () {
       this.quizStarted = true

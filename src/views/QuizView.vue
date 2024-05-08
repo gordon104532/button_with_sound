@@ -2,7 +2,7 @@
 <img style="padding:5px" width="15%" height="15%" alt="logo" src="../assets/img/logo.png" v-on:click="clickIcon">
 <h2 v-show="showMsg.length > 0">
   {{ showMsg }} <br>
-  {{ countDown }}
+  {{ countDownMsg }}
 </h2>
 <div class="quiz">
     <QuizPage></QuizPage>
@@ -21,7 +21,8 @@ export default {
   data () {
     return {
       showMsg: '',
-      countDown: '',
+      countDownMsg: '',
+      countDownInterval: null,
       esterEggCount: 0
     }
   },
@@ -46,21 +47,20 @@ export default {
             } else {
               this.showMsg = '\\我知道你很急，但你先別急/\n'
               if (data.start_at > 0) {
-                const unixTimestamp = data.start_at
-                const now = Math.floor(Date.now() / 1000) // 現在的 UNIX 時間戳
-                const countdown = unixTimestamp - now // 剩餘秒數
+                this.countDown(data.start_at)
 
-                const hours = Math.floor(countdown / 3600)
-                const minutes = Math.floor((countdown % 3600) / 60)
-                const seconds = countdown % 60
-
-                this.countDown = `倒數: ${hours} 小時 ${minutes} 分鐘 ${seconds} 秒\n`
+                this.countDownInterval = setInterval(() => {
+                  this.countDown(data.start_at)
+                }, 1000)
               }
               this.esterEggCount = 0
 
               setTimeout(() => {
+                // 清除倒數計時器
+                clearInterval(this.countDownInterval)
+
                 this.showMsg = ''
-                this.countDown = ''
+                this.countDownMsg = ''
               }, 10000)
             }
           })
@@ -68,6 +68,17 @@ export default {
             console.error('fetch /api/easter_egg Error:', error)
           })
       }
+    },
+    countDown (StartAt) {
+      const unixTimestamp = StartAt
+      const now = Math.floor(Date.now() / 1000) // 現在的 UNIX 時間戳
+      const countdown = unixTimestamp - now // 剩餘秒數
+
+      const hours = Math.floor(countdown / 3600)
+      const minutes = Math.floor((countdown % 3600) / 60)
+      const seconds = countdown % 60
+
+      this.countDownMsg = `倒數: ${hours} 小時 ${minutes} 分鐘 ${seconds} 秒\n`
     }
   }
 }
