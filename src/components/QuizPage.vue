@@ -18,12 +18,12 @@
 
         <div class="mb-3" v-show="isSetQuestion">
           <br>
-          <!-- <div class="alert alert-success d-flex align-items-center" role="alert" v-show="isSubmitSuccess">
+          <div class="alert alert-success d-flex align-items-center" role="alert" v-if="isSubmitSuccess">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
             <div>
-              新增成功!
+              題目建立成功！
             </div>
-          </div> -->
+          </div>
 
           <h2>新增問題</h2>
           <form @submit.prevent="submitQuiz">
@@ -195,11 +195,11 @@ export default {
             this.isSubmitSuccess = true
             setTimeout(() => {
               this.isSubmitSuccess = false
-            }, 3000)
+              this.isSetQuestion = false
+            }, 2000)
           } else {
             console.error('Failed to submit quiz.')
           }
-          this.isSetQuestion = false
         })
         .catch(error => {
           console.error('getNextQuestion Error:', error)
