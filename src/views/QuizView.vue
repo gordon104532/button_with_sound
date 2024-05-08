@@ -1,79 +1,74 @@
 <template>
 <img style="padding:5px" width="15%" height="15%" alt="logo" src="../assets/img/logo.png" v-on:click="clickIcon">
+<h2 v-show="showMsg.length > 0">
+  {{ showMsg }} <br>
+  {{ countDown }}
+</h2>
 <div class="quiz">
     <QuizPage></QuizPage>
 </div>
 
-<div v-on:click="clickMushroom">
-  <img id="cuteGif" src="../assets/img/mushroom.gif" alt="Mushroom GIF" style="width: 200px; height: 200px;">
-</div>
+<CuteMushroom></CuteMushroom>
 </template>
 
 <script>
 // @ is an alias to /src
 import QuizPage from '@/components/QuizPage.vue'
+import CuteMushroom from '@/components/CuteMushroom.vue'
 
 export default {
   name: 'QuizView',
   data () {
     return {
-      esterEggCount: 0,
-      cuteGif: null
+      showMsg: '',
+      countDown: '',
+      esterEggCount: 0
     }
   },
   components: {
-    QuizPage
-  },
-  mounted () {
-    this.cuteGif = document.getElementById('cuteGif')
-    // 每30秒執行一次動畫
-    setTimeout(() => {
-      this.animate()
-    }, 30000)
+    QuizPage,
+    CuteMushroom
   },
   methods: {
     clickIcon () {
       this.esterEggCount += 1
-    },
-    clickMushroom () {
-      this.$router.push('/mole')
-    },
-    animate () {
-      let x = -200
-      const step = 3 // 移動的步數
+      if (this.esterEggCount === 5) {
+        fetch(`${process.env.VUE_APP_BACKEND_URL}/api/easter_egg`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (data.ok) {
+              this.$router.push('/easter_egg')
+            } else {
+              this.showMsg = '\\我知道你很急，但你先別急/\n'
+              if (data.start_at > 0) {
+                const unixTimestamp = data.start_at
+                const now = Math.floor(Date.now() / 1000) // 現在的 UNIX 時間戳
+                const countdown = unixTimestamp - now // 剩餘秒數
 
-      // 開始動畫時設置圖片初始位置
-      this.cuteGif.style.display = 'block'
-      this.cuteGif.style.left = '-200px'
-      this.cuteGif.style.bottom = '0'
+                const hours = Math.floor(countdown / 3600)
+                const minutes = Math.floor((countdown % 3600) / 60)
+                const seconds = countdown % 60
 
-      // 開始動畫
-      const timer = setInterval(() => {
-        // 移動圖片
-        x += step
-        this.cuteGif.style.left = x + 'px'
+                this.countDown = `倒數: ${hours} 小時 ${minutes} 分鐘 ${seconds} 秒\n`
+              }
+              this.esterEggCount = 0
 
-        // 當圖片移動到右下角時，停止動畫
-        if (x >= window.innerWidth) {
-          clearInterval(timer)
-          this.cuteGif.style.display = 'none' // 隱藏圖片
-
-          // 設定在 30 秒後再次觸發動畫
-          setTimeout(() => {
-            this.animate()
-          }, 30000)
-        }
-      }, 10) // 每 10 毫秒移動一次
+              setTimeout(() => {
+                this.showMsg = ''
+                this.countDown = ''
+              }, 10000)
+            }
+          })
+          .catch(error => {
+            console.error('fetch /api/easter_egg Error:', error)
+          })
+      }
     }
   }
 }
 </script>
-
-<style scoped>
-#cuteGif {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  display: none;
-}
-</style>

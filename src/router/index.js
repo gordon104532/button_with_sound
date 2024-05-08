@@ -42,6 +42,15 @@ const routes = [
     path: '/mole',
     name: 'mole',
     component: () => import(/* webpackPrefetch: true */ '../views/WackMoleView.vue')
+  },
+  {
+    path: '/easter_egg',
+    name: 'easter_egg',
+    component: () => import(/* webpackPrefetch: true */ '../views/EasterEggView.vue')
+  },
+  {
+    path: '/pope_hbd_2023',
+    component: () => import(/* webpackPrefetch: true */ '../views/LastYearView.vue')
   }
 ]
 
