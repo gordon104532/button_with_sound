@@ -66,29 +66,35 @@ export default {
   },
   data () {
     return {
-      staticDomain: `${process.env.VUE_APP_BACKEND_URL}/media/soundpad`,
-      soundList: [
-        { name: '好想', path: this.staticDomain + '/好想卯咪.mp3' },
-        { name: '生日快熱', path: this.staticDomain + '/生日快熱.mp3' },
-        { name: '喵喵喵', path: this.staticDomain + '/喵喵喵.mp3' },
-        { name: '打狗狗巴掌', path: this.staticDomain + '/打狗狗巴掌.mp3' },
-        { name: '汪汪', path: this.staticDomain + '/卯咪汪汪.mp3' },
-        { name: '我沒看到', path: this.staticDomain + '/我沒看到.mp3' },
-        { name: '駿ㄍ', path: this.staticDomain + '/駿我大哥.mp3' },
-        { name: '哇塞', path: this.staticDomain + '/哇賽2.mp3' },
-        { name: '亂念', path: this.staticDomain + '/亂念.mp3' },
-        { name: '還有十分鐘', path: this.staticDomain + '/還有十分鐘.mp3' },
-        { name: '看錯時間了', path: this.staticDomain + '/看錯時間了.mp3' },
-        { name: '聊天室等我一下', path: this.staticDomain + '/聊天室等我一下.mp3' },
-        { name: '現在是VOD嗎', path: this.staticDomain + '/現在是VOD嗎.mp3' },
-        { name: '記得吃飯', path: this.staticDomain + '/邊哭邊提醒大家要記得吃飯.mp3' }
-      ],
+      staticDomain: '',
+      soundList: [],
       buttonBgColor: '#1582f0',
       navbarBgColor: '#1582f0',
       counter: 0,
-      hbd_song: this.staticDomain + '/生日快樂歌.mp3',
-      laugh_song: this.staticDomain + '/笑.mp3'
+      hbd_song: '',
+      laugh_song: ''
     }
+  },
+  created () {
+    this.staticDomain = `${process.env.VUE_APP_BACKEND_URL}/media/soundpad`
+    this.soundList = [
+      { name: '好想', path: this.staticDomain + '/好想卯咪.mp3' },
+      { name: '生日快熱', path: this.staticDomain + '/生日快熱.mp3' },
+      { name: '喵喵喵', path: this.staticDomain + '/喵喵喵.mp3' },
+      { name: '打狗狗巴掌', path: this.staticDomain + '/打狗狗巴掌.mp3' },
+      { name: '汪汪', path: this.staticDomain + '/卯咪汪汪.mp3' },
+      { name: '我沒看到', path: this.staticDomain + '/我沒看到.mp3' },
+      { name: '駿ㄍ', path: this.staticDomain + '/駿我大哥.mp3' },
+      { name: '哇塞', path: this.staticDomain + '/哇賽2.mp3' },
+      { name: '亂念', path: this.staticDomain + '/亂念.mp3' },
+      { name: '還有十分鐘', path: this.staticDomain + '/還有十分鐘.mp3' },
+      { name: '看錯時間了', path: this.staticDomain + '/看錯時間了.mp3' },
+      { name: '聊天室等我一下', path: this.staticDomain + '/聊天室等我一下.mp3' },
+      { name: '現在是VOD嗎', path: this.staticDomain + '/現在是VOD嗎.mp3' },
+      { name: '記得吃飯', path: this.staticDomain + '/邊哭邊提醒大家要記得吃飯.mp3' }
+    ]
+    this.hbd_song = this.staticDomain + '/生日快樂歌.mp3'
+    this.laugh_song = this.staticDomain + '/笑.mp3'
   },
   methods: {
     esterEgg () {
