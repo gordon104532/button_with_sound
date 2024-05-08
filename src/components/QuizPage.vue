@@ -77,10 +77,26 @@
           </div>
         <div v-else>
           <h3>No more questions!</h3>
+          <!-- 顯示所有題目 -->
+          <button class="btn btn-primary mx-2" @click="getQuestionList">列出所有題目</button>
+            <div class="d-grid gap-2 d-md-block mx-auto">
+              <div v-for="(quiz, key) in quizzes" :key="key">
+                <div class="mx-auto">
+                  <h2 class="mt" >Q: {{ quiz.question }}</h2>
+                </div>
+                <div class="d-flex justify-content-center mr-2">
+                  <button class="btn btn-outline-primary btn-lg mr-2">{{ quiz.choices[0] }}</button>
+                  <button class="btn btn-outline-primary btn-lg">{{ quiz.choices[1] }}</button>
+                </div>
+                <button class="btn btn-warning btn-sm" @click="reportQuestion(key)">舉報</button>
+                <h3> ~~~~~~~~~~~~~~~~~~~~ </h3>
+                <br>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
     </div>
-  </div>
   </template>
 
 <script>
@@ -104,7 +120,8 @@ export default {
       answeredBy: [[]],
       isSetQuestion: false,
       isSubmitSuccess: false,
-      setQuestion: ''
+      setQuestion: '',
+      quizzes: {}
     }
   },
   methods: {
@@ -203,6 +220,33 @@ export default {
         })
         .catch(error => {
           console.error('getNextQuestion Error:', error)
+        })
+    },
+    getQuestionList () {
+      // Call API to get question list
+      fetch(`${process.env.VUE_APP_BACKEND_URL}/api/quiz/list`, {
+        method: 'GET'
+      })
+        .then(response => response.json())
+        .then(data => {
+          this.quizzes = data
+        })
+        .catch(error => {
+          console.error('getQuestionList Error:', error)
+        })
+    },
+    reportQuestion (key) {
+      // Call API to report question
+      fetch(`${process.env.VUE_APP_BACKEND_URL}/api/quiz?qid=${key}&username=${this.nickname}`, {
+        method: 'DELETE'
+      })
+        .then(response => {
+          if (response.ok) {
+            console.log('reportQuestion success key: ', key)
+          }
+        })
+        .catch(error => {
+          console.error('reportQuestion err:', error, ', key: ', key)
         })
     }
   }
