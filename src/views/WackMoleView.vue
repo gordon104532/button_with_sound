@@ -1,18 +1,36 @@
 <template>
+<a class="btn btn-primary home" :href="'/#/quiz/' + this.nickname" role="button">⬅回問答</a>
 <div id="mole">
   <div>
     <h1>蘑菇? 蘑菇!<br>
       <span class="score">0</span>
       </h1>
       <div class="d-grid gap-2 d-md-block mx-auto">
-        <button @click="startGame" class="btn btn-primary mt-3">開始蘑菇</button>
+        <button @click="startGame" class="btn btn-primary mt-3 mx-2">開始蘑菇</button>
+        <button @click="getLeaderBoard" class="btn btn-primary mt-3">排行榜</button>
         </div>
     </div>
 
-  <div class="game">
+  <div class="game" v-show="!turnOff">
     <div v-for="index in this.holeCount" :key="index" :class="'hole hole' + index">
       <div class="mole"></div>
       </div>
+    </div>
+  </div>
+
+  <!-- 遮罩層 -->
+  <div class="overlay" v-if="leaderBoard.length > 0">
+    <!-- 排行榜容器 -->
+    <div class="LeaderBoard">
+      <!-- 關閉按鈕 -->
+      <button @click="closeLeaderBoard" class="btn btn-danger close-btn">×</button>
+      <!-- 排行榜 -->
+      <div v-for="(player, index) in leaderBoard" :key="index" class="player-score">
+        <h3>第{{ index + 1 }}名: {{ player.username }}: {{ player.score }}分</h3>
+      </div>
+      ......
+      <br>
+      <h3 v-if="currentScore > 0">你是 第{{ currentRank }}名: {{ nickname }}: {{ currentScore }}分</h3>
     </div>
   </div>
 
@@ -21,22 +39,41 @@
 
 <script>
 import bgm from '../assets/audio/mushroom.mp3'
-import soundEffect from '../assets/audio/nope.mp3'
 
+import soundEffect from '../assets/audio/nope.mp3'
 export default {
   el: '#mole',
   data () {
     return {
+      nickname: '',
       holeCount: 9,
       currentScore: 0,
+      currentRank: 0,
       isStart: false,
       turnOff: false,
       lastHole: null,
       moles: [],
-      bgmAudio: new Audio(bgm)
+      bgmAudio: new Audio(bgm),
+      leaderBoard: {}
     }
   },
   mounted () {
+    // 從 URL 查詢字串中擷取參數的函式
+    const getParameterByName = (name, url) => {
+      if (!url) url = window.location.href
+      name = name.replace(/[[\]]/g, '\\$&')
+      const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
+      const results = regex.exec(url)
+      if (!results) return null
+      if (!results[2]) return ''
+      return decodeURIComponent(results[2].replace(/\+/g, ' '))
+    }
+
+    // 從網址參數中獲取所需的值
+    if (getParameterByName('username')) {
+      this.nickname = getParameterByName('username')
+    }
+
     if (window.innerWidth <= 768) { // For mobile
       const game = document.querySelector('.game')
       game.style = 'width: ' + window.outerWidth + 'px; height: ' + window.outerHeightHeight + 'px;'
@@ -47,6 +84,11 @@ export default {
       mole.addEventListener('click', this.score)
     })
   },
+  beforeRouteLeave (to, from, next) {
+    // Stop playing the background music
+    this.bgmAudio.pause()
+    next()
+  },
   methods: {
     startGame () {
       // lock
@@ -54,12 +96,16 @@ export default {
 
       this.isStart = true
       this.currentScore = 0
+      this.currentRank = 0
+      this.closeLeaderBoard()
       document.querySelector('.score').textContent = this.currentScore
       this.popUp()
       this.bgmAudio.play()
       setTimeout(() => {
         this.turnOff = true
         this.isStart = false
+
+        this.uploadScore()
       }, 37000)
     },
     popUp () {
@@ -127,6 +173,47 @@ export default {
         }
         )
       }
+    },
+    uploadScore () {
+      fetch(`${process.env.VUE_APP_BACKEND_URL}/api/mole?score=${this.currentScore}&username=${this.nickname}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => response.json())
+        .then(data => {
+          this.currentRank = data.rank
+          console.log('this.currentRank ' + this.currentRank)
+        })
+        .catch(error => {
+          console.error('uploadScore Error:', error)
+        })
+
+      setTimeout(() => {
+        this.getLeaderBoard()
+      }, 1000)
+    },
+    getLeaderBoard () {
+      this.turnOff = true
+      fetch(`${process.env.VUE_APP_BACKEND_URL}/api/mole`, {
+        method: 'GET'
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data.leader_board[0].username)
+          if (data.leader_board === 0) {
+            return
+          }
+          this.leaderBoard = data.leader_board
+        })
+        .catch(error => {
+          console.error('getLeaderBoard Error:', error)
+        })
+    },
+    closeLeaderBoard () {
+      this.turnOff = false
+      this.leaderBoard = {}
     }
   }
 }
@@ -201,5 +288,42 @@ h1 {
   position: fixed;
   right: 20px;
   bottom: 10px;
+}
+
+.home {
+  position: fixed;
+  left: 20px;
+  top: 10px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色背景 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.LeaderBoard {
+  background-color: #4e4e4e;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 5;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.player-score {
+  margin-bottom: 10px;
 }
 </style>

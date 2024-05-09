@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     clickMushroom () {
-      this.$router.push('/mole')
+      this.$router.push('/mole?username=' + this.username)
     },
     animate () {
       let x = -200

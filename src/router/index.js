@@ -1,20 +1,14 @@
 // import { createRouter, createWebHistory } from 'vue-router'
 import { createRouter, createWebHashHistory } from 'vue-router'
 // import HomeView from '../views/HomeView.vue'
-// import QuizView from '../views/QuizView.vue'
-import EmptyView from '../views/EmptyView.vue'
+import QuizView from '../views/QuizView.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'empty',
-    component: EmptyView
+    name: 'quiz',
+    component: QuizView
   },
-  // {
-  //   path: '/',
-  //   name: 'quiz',
-  //   component: QuizView
-  // },
   {
     path: '/quiz',
     name: 'quiz',
@@ -39,7 +33,7 @@ const routes = [
     component: () => import(/* webpackPrefetch: true */ '../views/SnowView.vue')
   },
   {
-    path: '/mole',
+    path: '/mole/:username',
     name: 'mole',
     component: () => import(/* webpackPrefetch: true */ '../views/WackMoleView.vue')
   },

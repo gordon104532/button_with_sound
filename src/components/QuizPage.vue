@@ -124,6 +124,23 @@ export default {
       quizzes: {}
     }
   },
+  mounted () {
+    // 從 URL 查詢字串中擷取參數的函式
+    const getParameterByName = (name, url) => {
+      if (!url) url = window.location.href
+      name = name.replace(/[[\]]/g, '\\$&')
+      const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
+      const results = regex.exec(url)
+      if (!results) return null
+      if (!results[2]) return ''
+      return decodeURIComponent(results[2].replace(/\+/g, ' '))
+    }
+
+    // 從網址參數中獲取所需的值
+    if (getParameterByName('username')) {
+      this.nickname = getParameterByName('username')
+    }
+  },
   methods: {
     setNickname () {
       this.nickname = this.nicknameInput.trim()
