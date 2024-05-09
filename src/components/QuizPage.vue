@@ -88,7 +88,14 @@
                   <button class="btn btn-outline-primary btn-lg mr-2">{{ quiz.choices[0] }}</button>
                   <button class="btn btn-outline-primary btn-lg">{{ quiz.choices[1] }}</button>
                 </div>
-                <button class="btn btn-warning btn-sm" @click="reportQuestion(key)">舉報</button>
+
+                <!-- 使用條件渲染來顯示不同的內容 -->
+                <div v-if="quiz.reported">
+                  <h4>已舉報成功</h4>
+                </div>
+                <div v-else>
+                  <button class="btn btn-warning btn-sm" @click="reportQuestion(key)">舉報</button>
+                </div>
                 <h3> ~~~~~~~~~~~~~~~~~~~~ </h3>
                 <br>
               </div>
@@ -276,6 +283,8 @@ export default {
         .catch(error => {
           console.error('reportQuestion err:', error, ', key: ', key)
         })
+
+      this.quizzes[key].reported = true
     },
     clickMushroom () {
       this.$router.push('/mole?username=' + this.nickname)
