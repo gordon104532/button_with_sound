@@ -198,19 +198,26 @@ export default {
       }, 1000)
     },
     getLeaderBoard () {
+      if (this.isStart) return
+
       this.turnOff = true
       fetch(`${process.env.VUE_APP_BACKEND_URL}/api/mole`, {
         method: 'GET'
       })
         .then(response => response.json())
         .then(data => {
-          console.log(data.leader_board[0].username)
-          if (data.leader_board === 0) {
+          console.log(data)
+          if (data.leader_board.length === 0) {
+            this.leaderBoard = [{
+              username: '還沒有玩家',
+              score: 0
+            }]
             return
           }
           this.leaderBoard = data.leader_board
         })
         .catch(error => {
+          this.turnOff = false
           console.error('getLeaderBoard Error:', error)
         })
     },
