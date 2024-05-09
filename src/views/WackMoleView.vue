@@ -1,5 +1,5 @@
 <template>
-<a class="btn btn-primary home" :href="'/#/quiz/' + this.nickname" role="button">⬅回問答</a>
+<a class="btn btn-primary home" :href="'/#/quiz?username=' + this.nickname" role="button">⬅回問答</a>
 <div id="mole">
   <div>
     <h1>蘑菇? 蘑菇!<br>
@@ -175,6 +175,9 @@ export default {
       }
     },
     uploadScore () {
+      if (this.currentScore === 0) return
+      if (this.nickname === '') return
+
       fetch(`${process.env.VUE_APP_BACKEND_URL}/api/mole?score=${this.currentScore}&username=${this.nickname}`, {
         method: 'POST',
         headers: {

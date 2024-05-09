@@ -4,12 +4,9 @@
     <h3>夢迴2023 傳送門</h3>
     <h3>死去的記憶突然攻擊你</h3>
     </div>
-
-    <CuteMushroom></CuteMushroom>
 </template>
 
 <script>
-import CuteMushroom from '@/components/CuteMushroom.vue'
 import soundEffect from '../assets/audio/laugh.mp3'
 
 export default {
@@ -18,9 +15,6 @@ export default {
     return {
       esterEggCount: 0
     }
-  },
-  components: {
-    CuteMushroom
   },
   methods: {
     clickIcon () {

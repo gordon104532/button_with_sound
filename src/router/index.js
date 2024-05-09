@@ -33,7 +33,7 @@ const routes = [
     component: () => import(/* webpackPrefetch: true */ '../views/SnowView.vue')
   },
   {
-    path: '/mole/:username',
+    path: '/mole',
     name: 'mole',
     component: () => import(/* webpackPrefetch: true */ '../views/WackMoleView.vue')
   },

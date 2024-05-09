@@ -7,14 +7,11 @@
 <div class="quiz">
     <QuizPage></QuizPage>
 </div>
-
-<CuteMushroom></CuteMushroom>
 </template>
 
 <script>
 // @ is an alias to /src
 import QuizPage from '@/components/QuizPage.vue'
-import CuteMushroom from '@/components/CuteMushroom.vue'
 
 export default {
   name: 'QuizView',
@@ -27,8 +24,7 @@ export default {
     }
   },
   components: {
-    QuizPage,
-    CuteMushroom
+    QuizPage
   },
   methods: {
     clickIcon () {
