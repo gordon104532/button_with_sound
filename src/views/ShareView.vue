@@ -13,7 +13,7 @@
       <h3>
         <a href="https://www.youtube.com/@baize0w0" target="_blank" title="白澤大哥哥的頻道">白澤大哥哥的頻道</a>
       </h3>
-      <iframe width="100%" height="315" src="https://www.youtube.com/embed/F8UnNgTxyN8?si=dk-FbKf1GRXIlV7Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <iframe width="100%" height="315" src="https://www.youtube.com/embed/H64j35Un99g?si=DxrjVf-upVVbWPbs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
     <br>
 

@@ -5,7 +5,7 @@
       <div class="form-group">
         <input type="text" class="col-4 mx-auto form-control" v-model="nicknameInput" placeholder="輸入名稱">
       </div>
-      <button class="btn btn-primary mt-2" @click="setNickname">開始答題</button>
+      <button class="btn btn-primary mt-2" @click="setNickname">確定名稱</button>
     </div>
     <div v-else >
       <div v-if="!quizStarted">
