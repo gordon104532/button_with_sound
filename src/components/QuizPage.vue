@@ -48,7 +48,8 @@
           </div>
         </div>
       <div v-else >
-        <div v-if="question">
+        <!-- <div v-if="question"> -->
+          <div>
           <div class="mx-auto">
             <h2 class="mt-4" style="font-size:large">出題者: {{ author }}</h2>
             <!-- <h2 class="mt-4" style="text-align:right; font-size:medium">id: {{ questionId }}</h2> -->
@@ -77,11 +78,14 @@
             <button class="btn btn-outline-primary btn-lg" @click="getNextQuestion">下一題</button>
             </div>
           </div>
-        <div v-else>
+        <!-- <div v-else> -->
+        <div>
           <h3>No more questions!</h3>
+          <br>
           <!-- 顯示所有題目 -->
           <button class="btn btn-primary mx-2" @click="getQuestionList">列出所有題目</button>
-            <div class="d-grid gap-2 d-md-block mx-auto">
+            <br>
+          <div class="d-grid gap-2 d-md-block mx-auto">
               <div v-for="(quiz, key) in quizzes" :key="key">
                 <div class="mx-auto">
                   <h2 class="mt" >Q: {{ quiz.question }}</h2>
@@ -90,13 +94,14 @@
                   <button class="btn btn-outline-primary btn-lg mr-2">{{ quiz.choices[0] }}</button>
                   <button class="btn btn-outline-primary btn-lg">{{ quiz.choices[1] }}</button>
                 </div>
+                <br>
 
                 <!-- 使用條件渲染來顯示不同的內容 -->
                 <div v-if="quiz.reported">
                   <h4>已舉報成功</h4>
                 </div>
                 <div v-else>
-                  <button class="btn btn-warning btn-sm" @click="reportQuestion(key)">舉報</button>
+                  <button class="btn btn-warning btn-sm" @click="reportQuestion(key)">{{ quiz.reportChecked ? '真的要舉報嗎?' : '舉報' }}</button>
                 </div>
                 <h3> ~~~~~~~~~~~~~~~~~~~~ </h3>
                 <br>
@@ -273,20 +278,24 @@ export default {
         })
     },
     reportQuestion (key) {
-      // Call API to report question
-      fetch(`${process.env.VUE_APP_BACKEND_URL}/api/quiz?qid=${key}&username=${this.nickname}`, {
-        method: 'DELETE'
-      })
-        .then(response => {
-          if (response.ok) {
-            console.log('reportQuestion success key: ', key)
-          }
+      if (this.quizzes[key].reportChecked) {
+        // Call API to report question
+        fetch(`${process.env.VUE_APP_BACKEND_URL}/api/quiz?qid=${key}&username=${this.nickname}`, {
+          method: 'DELETE'
         })
-        .catch(error => {
-          console.error('reportQuestion err:', error, ', key: ', key)
-        })
+          .then(response => {
+            if (response.ok) {
+              console.log('reportQuestion success key: ', key)
+            }
+          })
+          .catch(error => {
+            console.error('reportQuestion err:', error, ', key: ', key)
+          })
 
-      this.quizzes[key].reported = true
+        this.quizzes[key].reported = true
+      } else {
+        this.quizzes[key].reportChecked = true
+      }
     },
     clickMushroom () {
       this.$router.push('/mole?username=' + this.nickname)
