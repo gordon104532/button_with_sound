@@ -2,6 +2,8 @@
   <div id="quiz" class="container mt-3">
     <h1>大家認識的波普貓</h1>
     <div v-if="!nickname">
+      <br>
+      這裡輸入你的名字，不是輸入你認識的波普貓(這個等會兒):
       <div class="form-group">
         <input type="text" class="col-4 mx-auto form-control" v-model="nicknameInput" placeholder="輸入名稱">
       </div>
