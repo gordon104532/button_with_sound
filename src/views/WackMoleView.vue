@@ -1,5 +1,5 @@
 <template>
-<a class="btn btn-primary home" :href="'/#/quiz?username=' + this.nickname" role="button">⬅回問答</a>
+<BackToQuiz :nickname="this.nickname"></BackToQuiz>
 <div id="mole">
   <div>
     <h1>蘑菇? 蘑菇!<br>
@@ -39,10 +39,14 @@
 
 <script>
 import bgm from '../assets/audio/mushroom.mp3'
-
 import soundEffect from '../assets/audio/nope.mp3'
+import BackToQuiz from '@/components/BackToQuiz.vue'
+
 export default {
   el: '#mole',
+  components: {
+    BackToQuiz
+  },
   data () {
     return {
       nickname: '',
@@ -298,12 +302,6 @@ h1 {
   position: fixed;
   right: 20px;
   bottom: 10px;
-}
-
-.home {
-  position: fixed;
-  left: 20px;
-  top: 10px;
 }
 
 .overlay {
