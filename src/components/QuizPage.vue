@@ -48,8 +48,7 @@
           </div>
         </div>
       <div v-else >
-        <!-- <div v-if="question"> -->
-          <div>
+        <div v-if="question">
           <div class="mx-auto">
             <h2 class="mt-4" style="font-size:large">出題者: {{ author }}</h2>
             <!-- <h2 class="mt-4" style="text-align:right; font-size:medium">id: {{ questionId }}</h2> -->
@@ -78,8 +77,7 @@
             <button class="btn btn-outline-primary btn-lg" @click="getNextQuestion">下一題</button>
             </div>
           </div>
-        <!-- <div v-else> -->
-        <div>
+        <div v-else>
           <h3>No more questions!</h3>
           <br>
           <!-- 顯示所有題目 -->
