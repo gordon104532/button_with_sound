@@ -30,7 +30,16 @@
       </div>
       ......
       <br>
-      <h3 v-if="currentScore > 0">你是 第{{ currentRank }}名: {{ nickname }}: {{ currentScore }}分</h3>
+      <div v-if="currentScore>0">
+        <h3 v-if="currentRank>0">你是 第{{ currentRank }}名: {{ nickname }}: {{ currentScore }}分</h3>
+        <div v-else>
+          <div>輸入名稱才可以上排行榜喔!</div>
+          <div class="form-group">
+            <input type="text" class="col-4 mx-auto form-control" v-model="nicknameInput" placeholder="輸入名稱">
+          </div>
+          <button class="btn btn-primary mt-2" @click="setNicknameAndUploadScore">確定名稱</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -51,7 +60,7 @@ export default {
     return {
       nickname: '',
       holeCount: 9,
-      currentScore: 0,
+      currentScore: 1,
       currentRank: 0,
       isStart: false,
       turnOff: false,
@@ -179,24 +188,22 @@ export default {
       }
     },
     uploadScore () {
-      if (this.currentScore === 0) return
-      if (this.nickname === '') return
-
-      fetch(`${process.env.VUE_APP_BACKEND_URL}/api/mole?score=${this.currentScore}&username=${this.nickname}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(response => response.json())
-        .then(data => {
-          this.currentRank = data.rank
-          console.log('this.currentRank ' + this.currentRank)
+      if (this.currentScore !== 0 && this.nickname !== '') {
+        fetch(`${process.env.VUE_APP_BACKEND_URL}/api/mole?score=${this.currentScore}&username=${this.nickname}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          }
         })
-        .catch(error => {
-          console.error('uploadScore Error:', error)
-        })
-
+          .then(response => response.json())
+          .then(data => {
+            this.currentRank = data.rank
+            console.log('this.currentRank ' + this.currentRank)
+          })
+          .catch(error => {
+            console.error('uploadScore Error:', error)
+          })
+      }
       setTimeout(() => {
         this.getLeaderBoard()
       }, 1000)
@@ -228,6 +235,14 @@ export default {
     closeLeaderBoard () {
       this.turnOff = false
       this.leaderBoard = {}
+    },
+    setNicknameAndUploadScore () {
+      this.nickname = this.nicknameInput.trim()
+      if (this.nickname === '') {
+        return
+      }
+
+      this.uploadScore()
     }
   }
 }
