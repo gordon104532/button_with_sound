@@ -78,7 +78,7 @@
             </div>
           </div>
         <div v-else>
-          <h3>No more questions!</h3>
+          <h3>你已經回答過所有題目了，去打蘑菇吧!</h3>
           <br>
           <!-- 顯示所有題目 -->
           <button class="btn btn-primary mx-2" @click="getQuestionList">列出所有題目</button>
@@ -88,9 +88,25 @@
                 <div class="mx-auto">
                   <h2 class="mt" >Q: {{ quiz.question }}</h2>
                 </div>
-                <div class="d-flex justify-content-center mr-2">
+                <!-- <div class="d-flex justify-content-center mr-2">
                   <button class="btn btn-outline-primary btn-lg mr-2">{{ quiz.choices[0] }}</button>
                   <button class="btn btn-outline-primary btn-lg">{{ quiz.choices[1] }}</button>
+                </div> -->
+
+                <!-- 包含誰回答了題目 -->
+                <div class="row">
+                  <div class="col-6">
+                    <h2 class="mt-4">{{ quiz.choices[0] }}</h2><h2 class="mt-2" style="font-size:large">共 {{ quiz.answered_by[0].length }} 人</h2>
+                    <div class="user-names">
+                      <span v-for="(user, index) in quiz.answered_by[0]" :key="index" class="user-name">{{ user }}</span>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <h2 class="mt-4">{{ quiz.choices[1] }}</h2><h2 class="mt-2" style="font-size:large">共 {{ quiz.answered_by[1].length }} 人</h2>
+                    <div class="user-names">
+                      <span v-for="(user, index) in quiz.answered_by[1]" :key="index" class="user-name">{{ user }}</span>
+                    </div>
+                  </div>
                 </div>
                 <br>
 
