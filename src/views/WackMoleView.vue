@@ -198,7 +198,6 @@ export default {
           .then(response => response.json())
           .then(data => {
             this.currentRank = data.rank
-            console.log('this.currentRank ' + this.currentRank)
           })
           .catch(error => {
             console.error('uploadScore Error:', error)
@@ -217,7 +216,6 @@ export default {
       })
         .then(response => response.json())
         .then(data => {
-          console.log(data)
           if (data.leader_board.length === 0) {
             this.leaderBoard = [{
               username: '還沒有玩家',
