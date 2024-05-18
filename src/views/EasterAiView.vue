@@ -19,8 +19,8 @@
   <br>
 
   <div v-if="esterEggCount>13">
-    <h3>以下些的太鬧了，拿來笑一下用</h3>
-    <PlayList :links="soundList.slice(22, 33)"></PlayList>
+    <h3>以下有些的太鬧了，拿來笑一下用</h3>
+    <PlayList :links="soundList.slice(22, 34)"></PlayList>
   </div>
 </div>
 </template>
@@ -74,7 +74,8 @@ export default {
       { text: '少女A', url: this.staticDomain + '/tier3/0430_少女A_初音感.mp3' },
       { text: 'Amorfoda', url: this.staticDomain + '/tier3/0505_Amorfoda_ng.mp3' },
       { text: '不敢哭', url: this.staticDomain + '/tier3/0505_不敢哭_ng.mp3' },
-      { text: '你要的愛', url: this.staticDomain + '/tier3/0505_你要的愛_ng.mp3' }
+      { text: '你要的愛', url: this.staticDomain + '/tier3/0505_你要的愛_ng.mp3' },
+      { text: '罪と罰', url: this.staticDomain + '/tier3/0512_罪と罰_ng.mp3' }
     ]
   },
   data () {

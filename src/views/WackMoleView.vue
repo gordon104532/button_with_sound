@@ -60,7 +60,7 @@ export default {
     return {
       nickname: '',
       holeCount: 9,
-      currentScore: 1,
+      currentScore: 0,
       currentRank: 0,
       isStart: false,
       turnOff: false,

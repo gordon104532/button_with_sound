@@ -9,7 +9,7 @@
 </div>
 
 <div class="sound-cloud-player">
-  <iframe width="100%" height="100px" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/228593349&color=%23745c6c&auto_play=true&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+  <iframe width="100%" height="100px" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/228593349&color=%23745c6c&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=true"></iframe>
 </div>
 </template>
 
@@ -42,7 +42,8 @@ export default {
         })
           .then(response => response.json())
           .then(data => {
-            if (data.ok) {
+            if (data.message === 'EasterEgg Activated') {
+              this.activateEasterEgg()
               this.$router.push('/easter_egg')
             } else {
               this.showMsg = '\\我知道你很急，但你先別急/\n'
@@ -79,6 +80,11 @@ export default {
       const seconds = countdown % 60
 
       this.countDownMsg = `倒數: ${hours} 小時 ${minutes} 分鐘 ${seconds} 秒\n`
+    },
+    activateEasterEgg () {
+      fetch(`${process.env.VUE_APP_BACKEND_URL}/api/easter_egg?username=${this.nickname}`, {
+        method: 'POST'
+      })
     }
   }
 }
