@@ -7,10 +7,6 @@
 <div class="quiz">
     <QuizPage></QuizPage>
 </div>
-
-<div class="sound-cloud-player">
-  <iframe width="100%" height="100px" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/228593349&color=%23745c6c&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=true"></iframe>
-</div>
 </template>
 
 <script>
@@ -89,27 +85,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.sound-cloud-player {
-  position: fixed;
-  left: 10px;
-  bottom: 10px;
-  z-index: -1;
-  width: 400px;
-  height: 100px;
-}
-#iframe-container {
-  width: 100%;
-  height: 300px; /* 調整高度以適應你的需求 */
-  overflow: hidden; /* 隱藏超出部分 */
-}
-
-#iframe-container iframe {
-  width: 100%;
-  height: 100%; /* 填滿父容器 */
-  border: none; /* 移除邊框 */
-  transform: scale(0.5); /* 縮小 iframe 內容以適應容器大小 */
-  transform-origin: 0 0; /* 設置縮放原點 */
-}
-</style>
