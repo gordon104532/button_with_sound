@@ -102,11 +102,6 @@
                   <h2 class="mt" >Q: {{ quiz.question }}</h2>
                 </div>
 
-                <!-- <div class="d-flex justify-content-center mr-2">
-                  <button class="btn btn-outline-primary btn-lg mr-2">{{ quiz.choices[0] }}</button>
-                  <button class="btn btn-outline-primary btn-lg">{{ quiz.choices[1] }}</button>
-                </div> -->
-
                 <!-- 包含誰回答了題目 -->
                 <div class="row">
                   <div class="col-6">
