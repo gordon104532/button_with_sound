@@ -6,13 +6,13 @@
     *請注意: 以下都不是波普貓唱的
   <br>
 
-  <PlayList :links="soundList.slice(0, 8)"></PlayList>
+  <PlayList :links="soundList.slice(0, 10)"></PlayList>
   <br>
   <br>
 
   <div v-if="esterEggCount>4">
     <h3>以下有些瑕疵，但還是可以聽一下</h3>
-    <PlayList :links="soundList.slice(8, 22)"></PlayList>
+    <PlayList :links="soundList.slice(10, 24)"></PlayList>
 
   </div>
   <br>
@@ -20,7 +20,7 @@
 
   <div v-if="esterEggCount>13">
     <h3>以下有些的太鬧了，拿來笑一下用</h3>
-    <PlayList :links="soundList.slice(22, 35)"></PlayList>
+    <PlayList :links="soundList.slice(24, 37)"></PlayList>
   </div>
 </div>
 </template>
@@ -48,6 +48,8 @@ export default {
       { text: 'Sweet Memories', url: this.staticDomain + '/tier1/0519_SWEET_MEMORIES.mp3' },
       { text: 'Sunshine Girl', url: this.staticDomain + '/tier1/0505_Sunshine_Girl.mp3' },
       { text: 'Stellar Stellar', url: this.staticDomain + '/tier1/0430_stellar_stellar.mp3' },
+      { text: '浪費', url: this.staticDomain + '/tier1/0520_浪費.mp3' },
+      { text: '裝醉', url: this.staticDomain + '/tier1/0520_裝醉.mp3' },
       // tier2
       { text: 'Paper Hearts short ver.', url: this.staticDomain + '/tier2/0430_paper_heart_short.mp3' },
       { text: 'Past Lives', url: this.staticDomain + '/tier2/0418_past_lives.mp3' },
