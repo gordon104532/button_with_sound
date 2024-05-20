@@ -28,6 +28,7 @@ export default {
   },
   methods: {
     clickIcon () {
+      if (`${process.env.VUE_APP_BACKEND_SWITCH}` === 'false') return
       this.esterEggCount += 1
       if (this.esterEggCount === 5) {
         fetch(`${process.env.VUE_APP_BACKEND_URL}/api/easter_egg`, {

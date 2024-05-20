@@ -29,11 +29,6 @@ const routes = [
     component: () => import(/* webpackPrefetch: true */ '../views/SoundPadView.vue')
   },
   {
-    path: '/snow',
-    name: 'snow',
-    component: () => import(/* webpackPrefetch: true */ '../views/SnowView.vue')
-  },
-  {
     path: '/mole',
     name: 'mole',
     component: () => import(/* webpackPrefetch: true */ '../views/WackMoleView.vue')

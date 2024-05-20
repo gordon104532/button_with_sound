@@ -67,7 +67,67 @@ export default {
       lastHole: null,
       moles: [],
       bgmAudio: new Audio(bgm),
-      leaderBoard: {}
+      leaderBoard: {},
+      staticLeaderBoard: {
+        leader_board: [
+          {
+            username: '波普貓',
+            score: 57
+          },
+          {
+            username: '維尼',
+            score: 52
+          },
+          {
+            username: '管理員伯伯',
+            score: 52
+          },
+          {
+            username: '魚',
+            score: 51
+          },
+          {
+            username: '波堡',
+            score: 51
+          },
+          {
+            username: '白澤',
+            score: 50
+          },
+          {
+            username: '洋蔥',
+            score: 50
+          },
+          {
+            username: '卡門',
+            score: 50
+          },
+          {
+            username: '冰',
+            score: 50
+          },
+          {
+            username: 'airmark',
+            score: 48
+          },
+          {
+            username: '紅鯉魚',
+            score: 47
+          },
+          {
+            username: 'Isola',
+            score: 47
+          },
+          {
+            username: '六分鐘ㄉ惡夢',
+            score: 46
+          },
+          {
+            username: '漂浮黑喵',
+            score: 37
+          }
+        ]
+      }
     }
   },
   mounted () {
@@ -188,20 +248,24 @@ export default {
       }
     },
     uploadScore () {
-      if (this.currentScore !== 0 && this.nickname !== '') {
-        fetch(`${process.env.VUE_APP_BACKEND_URL}/api/mole?score=${this.currentScore}&username=${this.nickname}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        })
-          .then(response => response.json())
-          .then(data => {
-            this.currentRank = data.rank
+      if (`${process.env.VUE_APP_BACKEND_SWITCH}` === 'true') {
+        if (this.currentScore !== 0 && this.nickname !== '') {
+          fetch(`${process.env.VUE_APP_BACKEND_URL}/api/mole?score=${this.currentScore}&username=${this.nickname}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            }
           })
-          .catch(error => {
-            console.error('uploadScore Error:', error)
-          })
+            .then(response => response.json())
+            .then(data => {
+              this.currentRank = data.rank
+            })
+            .catch(error => {
+              console.error('uploadScore Error:', error)
+            })
+        }
+      } else {
+        this.currentRank = 514
       }
       setTimeout(() => {
         this.getLeaderBoard()
@@ -209,8 +273,12 @@ export default {
     },
     getLeaderBoard () {
       if (this.isStart) return
-
       this.turnOff = true
+      if (`${process.env.VUE_APP_BACKEND_SWITCH}` === 'false') {
+        this.leaderBoard = this.staticLeaderBoard.leader_board
+        return
+      }
+
       fetch(`${process.env.VUE_APP_BACKEND_URL}/api/mole`, {
         method: 'GET'
       })
