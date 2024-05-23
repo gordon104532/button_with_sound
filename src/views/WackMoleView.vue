@@ -347,4 +347,15 @@ h1 {
 .player-score {
   margin-bottom: 10px;
 }
+
+@media (prefers-color-scheme: light) {
+  .LeaderBoard {
+    background-color: antiquewhite;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 5;
+  }
+}
 </style>
