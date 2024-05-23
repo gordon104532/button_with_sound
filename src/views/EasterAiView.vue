@@ -20,7 +20,7 @@
 
   <div v-if="esterEggCount>13">
     <h3>以下有些的太鬧了，拿來笑一下用</h3>
-    <PlayList :links="soundList.slice(24, 37)"></PlayList>
+    <PlayList :links="soundList.slice(24, 38)"></PlayList>
   </div>
 </div>
 </template>
@@ -49,7 +49,7 @@ export default {
       { text: 'Sunshine Girl', url: this.staticDomain + '/tier1/0505_Sunshine_Girl.mp3' },
       { text: 'Stellar Stellar', url: this.staticDomain + '/tier1/0430_stellar_stellar.mp3' },
       { text: '浪費', url: this.staticDomain + '/tier1/0520_浪費.mp3' },
-      { text: '裝醉', url: this.staticDomain + '/tier1/0520_裝醉.mp3' },
+      { text: '裝醉 short ver.', url: this.staticDomain + '/tier1/0520_裝醉_short_ver.mp3' },
       // tier2
       { text: 'Paper Hearts short ver.', url: this.staticDomain + '/tier2/0430_paper_heart_short.mp3' },
       { text: 'Past Lives', url: this.staticDomain + '/tier2/0418_past_lives.mp3' },
@@ -73,6 +73,7 @@ export default {
       { text: '蘑菇蘑菇', url: this.staticDomain + '/tier3/0417_mushroom.mp3' },
       { text: '不敢哭', url: this.staticDomain + '/tier3/0505_不敢哭_ng.mp3' },
       { text: '你要的愛', url: this.staticDomain + '/tier3/0505_你要的愛_ng.mp3' },
+      { text: '相愛後動物感傷', url: this.staticDomain + '/tier2/0520_相愛後動物感傷.mp3' },
       { text: 'Apollo short ver.', url: this.staticDomain + '/tier3/0417_Apollo_short_ver.mp3' },
       { text: '現在想要見你', url: this.staticDomain + '/tier2/0505_現在想要見你.mp3' },
       { text: '罪と罰', url: this.staticDomain + '/tier3/0512_罪と罰_ng.mp3' },
