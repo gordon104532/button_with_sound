@@ -1,6 +1,8 @@
 <template>
   <div id="quiz" class="container mt-3">
     <h1>大家認識的波普貓</h1>
+    <h5>2024的活動結束了，明年見 (嗎?  (｡•ㅅ•｡)♡</h5>
+    <br>
     <div v-if="!nickname">
       <br>
       這裡輸入你的名字，不是輸入你認識的波普貓(這個等會兒):
@@ -12,12 +14,12 @@
     <div v-else >
       <div v-if="!quizStarted">
         <h3>Hi {{ nickname }} ᓚᘏᗢ</h3>
-        <h6 style="font-size:medium">(建議先選擇答題再出題)</h6>
+        <!-- <h6 style="font-size:medium">(建議先選擇答題再出題)</h6> -->
         </div>
       <div class="d-grid gap-2 d-md-block mx-auto" v-if="!quizStarted">
         <button class="btn btn-primary mx-2" @click="startQuiz">答題</button>
-        <button class="btn btn-primary mx-2" @click="isSetQuestion = !isSetQuestion">出題</button>
-
+        <!-- <button class="btn btn-primary mx-2" @click="isSetQuestion = !isSetQuestion">出題</button> -->
+        <button class="btn btn-primary mx-2" @click="getQuestionList">列出所有題目</button>
         <div class="mb-3" v-show="isSetQuestion">
           <br>
           <div class="alert alert-success d-flex align-items-center" role="alert" v-if="isSubmitSuccess">
@@ -143,7 +145,7 @@ export default {
     return {
       cuteGif: null,
       nicknameInput: '',
-      nickname: '',
+      nickname: '波寶',
       quizStarted: false,
       author: '',
       questionId: '',
@@ -2793,11 +2795,6 @@ export default {
           return
         }
 
-        if (this.staticQuizIndex === 3) {
-          this.question = ''
-          return
-        }
-
         this.staticQuizIndex++
         this.author = this.staticQuizzes[this.staticQuizIndex].author
         this.questionId = this.staticQuizzes[this.staticQuizIndex].id
@@ -2910,6 +2907,7 @@ export default {
     },
     getQuestionList () {
       if (`${process.env.VUE_APP_BACKEND_SWITCH}` === 'false') {
+        this.quizStarted = true
         this.quizzes = this.staticQuizzes
         return
       }
